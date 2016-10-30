@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+
+public class AccountDB {
+
+	private ArrayList <Account> accts = new ArrayList<Account>();
+	private Account currentUser;
+	
+	
+	public void setCurrentUser(String pin){
+		for (Account a : accts){
+			if (a.getPIN().equals(pin)){
+				currentUser = a;
+			}
+		}
+	}
+	
+	public Account getCurrentUser(){
+		return currentUser;
+	}
+	
+	public void addAccount(Account acct){
+		//adding the accounts to the array
+		accts.add(acct);
+	}
+
+	public void closeAccount(){
+		// this will be used to close accounts
+	}
+	public ArrayList <Account> getAccts(){
+		//returns the array to AccountTest so that the accounts can be printed 
+		return accts;
+	}
+	public boolean contains(String pin){
+		
+		for (Account a : accts){
+			if (a.getPIN().equals(pin)){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+}
