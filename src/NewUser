@@ -1,0 +1,218 @@
+import javax.swing.JPanel;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Component;
+
+import javax.swing.Box;
+
+import java.awt.Dimension;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
+
+import java.awt.Color;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+
+
+public class NewUser extends JPanel {
+	private JTextField txtEnterUserName;
+	private JTextField txtEnterPin;
+	private JTextField txtReenterPin;
+
+	/**
+	 * Create the panel.
+	 */
+	public NewUser(JFrame frame) {
+		setBackground(Color.LIGHT_GRAY);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.LIGHT_GRAY);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.LIGHT_GRAY);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 206, Short.MAX_VALUE)
+					.addGap(27))
+		);
+		GridBagLayout gbl_panel_3 = new GridBagLayout();
+		gbl_panel_3.columnWidths = new int[]{0, 0};
+		gbl_panel_3.rowHeights = new int[]{0, 0, 0};
+		gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		panel_3.setLayout(gbl_panel_3);
+		
+		JLabel lblNewLabel_1 = new JLabel("Enter New User Information");
+		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 20f));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_1.gridheight = 2;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 0;
+		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		listModel.addElement("hayyylo");
+		listModel.addElement("Yasss");
+		for(int i = 0; i< 103; i++){
+			listModel.addElement("Yassssss");
+		}
+		
+		DefaultListModel<String> model = new DefaultListModel<>();
+		for(int i =0; i< 100 ; i++){
+			model.addElement("yassss");
+		}
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{40, 70, 70, 40, 0};
+		gbl_panel_1.rowHeights = new int[]{20, 70, 13, 70, 20, 70, 10, 40};
+		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+		panel_1.setLayout(gbl_panel_1);
+		
+		Component rigidArea_4 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_4 = new GridBagConstraints();
+		gbc_rigidArea_4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rigidArea_4.gridwidth = 3;
+		gbc_rigidArea_4.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_4.gridx = 0;
+		gbc_rigidArea_4.gridy = 0;
+		panel_1.add(rigidArea_4, gbc_rigidArea_4);
+		
+		txtEnterUserName = new JTextField();
+		txtEnterUserName.setBackground(UIManager.getColor("Button.light"));
+		txtEnterUserName.setFont(txtEnterUserName.getFont().deriveFont(txtEnterUserName.getFont().getSize() + 9f));
+		txtEnterUserName.setHorizontalAlignment(SwingConstants.LEFT);
+		txtEnterUserName.setText("Enter User Name");
+		GridBagConstraints gbc_txtEnterUserName = new GridBagConstraints();
+		gbc_txtEnterUserName.gridwidth = 2;
+		gbc_txtEnterUserName.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEnterUserName.fill = GridBagConstraints.BOTH;
+		gbc_txtEnterUserName.gridx = 1;
+		gbc_txtEnterUserName.gridy = 1;
+		panel_1.add(txtEnterUserName, gbc_txtEnterUserName);
+		txtEnterUserName.setColumns(10);
+		
+		Component rigidArea_2 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_2 = new GridBagConstraints();
+		gbc_rigidArea_2.fill = GridBagConstraints.VERTICAL;
+		gbc_rigidArea_2.gridwidth = 2;
+		gbc_rigidArea_2.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_2.gridx = 1;
+		gbc_rigidArea_2.gridy = 2;
+		panel_1.add(rigidArea_2, gbc_rigidArea_2);
+		
+		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
+		gbc_rigidArea.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rigidArea.gridheight = 7;
+		gbc_rigidArea.insets = new Insets(0, 0, 0, 5);
+		gbc_rigidArea.gridx = 0;
+		gbc_rigidArea.gridy = 1;
+		panel_1.add(rigidArea, gbc_rigidArea);
+		
+		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
+		gbc_rigidArea_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rigidArea_1.gridheight = 8;
+		gbc_rigidArea_1.gridx = 3;
+		gbc_rigidArea_1.gridy = 0;
+		panel_1.add(rigidArea_1, gbc_rigidArea_1);
+		
+		txtEnterPin = new JTextField();
+		txtEnterPin.setBackground(UIManager.getColor("Button.light"));
+		txtEnterPin.setFont(txtEnterPin.getFont().deriveFont(txtEnterPin.getFont().getSize() + 9f));
+		txtEnterPin.setHorizontalAlignment(SwingConstants.LEFT);
+		txtEnterPin.setText("Enter Pin");
+		GridBagConstraints gbc_txtEnterPin = new GridBagConstraints();
+		gbc_txtEnterPin.gridwidth = 2;
+		gbc_txtEnterPin.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEnterPin.fill = GridBagConstraints.BOTH;
+		gbc_txtEnterPin.gridx = 1;
+		gbc_txtEnterPin.gridy = 3;
+		panel_1.add(txtEnterPin, gbc_txtEnterPin);
+		txtEnterPin.setColumns(10);
+		
+		Component rigidArea_5 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridwidth = 2;
+		gbc.insets = new Insets(0, 0, 5, 5);
+		gbc.gridx = 1;
+		gbc.gridy = 4;
+		panel_1.add(rigidArea_5, gbc);
+		
+		txtReenterPin = new JTextField();
+		txtReenterPin.setBackground(UIManager.getColor("Button.light"));
+		txtReenterPin.setFont(txtReenterPin.getFont().deriveFont(txtReenterPin.getFont().getSize() + 9f));
+		txtReenterPin.setHorizontalAlignment(SwingConstants.LEFT);
+		txtReenterPin.setText("Re-Enter Pin");
+		GridBagConstraints gbc_txtReenterPin = new GridBagConstraints();
+		gbc_txtReenterPin.gridwidth = 2;
+		gbc_txtReenterPin.insets = new Insets(0, 0, 5, 5);
+		gbc_txtReenterPin.fill = GridBagConstraints.BOTH;
+		gbc_txtReenterPin.gridx = 1;
+		gbc_txtReenterPin.gridy = 5;
+		panel_1.add(txtReenterPin, gbc_txtReenterPin);
+		txtReenterPin.setColumns(10);
+		
+		Component rigidArea_3 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_3 = new GridBagConstraints();
+		gbc_rigidArea_3.fill = GridBagConstraints.VERTICAL;
+		gbc_rigidArea_3.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_3.gridx = 1;
+		gbc_rigidArea_3.gridy = 6;
+		panel_1.add(rigidArea_3, gbc_rigidArea_3);
+		
+		JButton btnBack = new JButton("");
+		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
+		GridBagConstraints gbc_btnBack = new GridBagConstraints();
+		gbc_btnBack.fill = GridBagConstraints.BOTH;
+		gbc_btnBack.insets = new Insets(0, 0, 0, 5);
+		gbc_btnBack.gridx = 1;
+		gbc_btnBack.gridy = 7;
+		panel_1.add(btnBack, gbc_btnBack);
+		setLayout(groupLayout);
+
+	}
+}
+
