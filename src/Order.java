@@ -33,12 +33,12 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 
-public class Order2 extends JPanel {
+public class Order extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Order2(JFrame frame) {
+	public Order(JFrame frame) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -85,9 +85,10 @@ public class Order2 extends JPanel {
 		panel_3.setLayout(gbl_panel_3);
 		
 		JLabel lblNewLabel_1 = new JLabel("Order!");
-		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 15f));
+		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 20f));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
 		gbc_lblNewLabel_1.gridheight = 2;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_1.gridx = 0;
@@ -224,7 +225,7 @@ public class Order2 extends JPanel {
 		panel_1.add(rigidArea_3, gbc_rigidArea_3);
 		
 		JButton btnBack = new JButton("");
-		btnBack.setIcon(new ImageIcon(Order2.class.getResource("/Backicon/back (1).png")));
+		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;
 		gbc_btnBack.insets = new Insets(0, 0, 0, 5);
@@ -235,3 +236,4 @@ public class Order2 extends JPanel {
 
 	}
 }
+
