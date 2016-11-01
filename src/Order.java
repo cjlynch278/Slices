@@ -29,16 +29,20 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 import java.awt.Color;
+import java.util.ArrayList;
+
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 
 public class Order extends JPanel {
-
+	public int count = 1;
+	public ArrayList<String> orderList;
 	/**
 	 * Create the panel.
 	 */
-	public Order(JFrame frame) {
+	public Order(JFrame frame, Launch launch , ArrayList<String> o, DefaultListModel<String> model) {
+		orderList = o;
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -95,71 +99,81 @@ public class Order extends JPanel {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0, 0};
-		gbl_panel_2.rowHeights = new int[]{38, 0, 0, 0};
-		gbl_panel_2.columnWeights = new double[]{1.0, 0.0};
-		gbl_panel_2.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel_2.rowHeights = new int[]{38, 217, 1, 0};
+		gbl_panel_2.columnWeights = new double[]{1.0, 1.0, 1.0, 0.0};
+		gbl_panel_2.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
 		JLabel lblNewLabel = new JLabel("Cart");
 		lblNewLabel.setFont(lblNewLabel.getFont().deriveFont(lblNewLabel.getFont().getSize() + 7f));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridwidth = 3;
 		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
 		panel_2.add(lblNewLabel, gbc_lblNewLabel);
 		
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		listModel.addElement("hayyylo");
-		listModel.addElement("Yasss");
-		for(int i = 0; i< 103; i++){
-			listModel.addElement("Yassssss");
-		}
+		
 		
 		Component rigidArea_6 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_6 = new GridBagConstraints();
 		gbc_rigidArea_6.gridheight = 3;
-		gbc_rigidArea_6.gridx = 1;
+		gbc_rigidArea_6.gridx = 3;
 		gbc_rigidArea_6.gridy = 0;
 		panel_2.add(rigidArea_6, gbc_rigidArea_6);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 3;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_2.add(scrollPane, gbc_scrollPane);
 		
-		DefaultListModel<String> model = new DefaultListModel<>();
 		JList<String> list = new JList<String>(model);
+		for(int i =0; i<orderList.size() ; i++){
+			model.addElement((i+1) + ". " +orderList.get(i));
+		}
+		
 		list.setFont(list.getFont().deriveFont(list.getFont().getSize() + 8f));
 		scrollPane.setViewportView(list);
-		for(int i =0; i< 100 ; i++){
-			model.addElement("yassss");
-		}
-				
 		
-		Component rigidArea_5 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_5 = new GridBagConstraints();
-		gbc_rigidArea_5.insets = new Insets(0, 0, 0, 5);
-		gbc_rigidArea_5.gridx = 0;
-		gbc_rigidArea_5.gridy = 2;
-		panel_2.add(rigidArea_5, gbc_rigidArea_5);
+		JButton btnDeleteSelection = new JButton("Delete Selection");
+		btnDeleteSelection.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				orderList.remove(list.getSelectedIndex());
+				
+				model.clear();
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+					
+				}
+			}
+		});
+		btnDeleteSelection.setFont(btnDeleteSelection.getFont().deriveFont(btnDeleteSelection.getFont().getSize() + 4f));
+		GridBagConstraints gbc_btnDeleteSelection = new GridBagConstraints();
+		gbc_btnDeleteSelection.fill = GridBagConstraints.BOTH;
+		gbc_btnDeleteSelection.insets = new Insets(0, 0, 0, 5);
+		gbc_btnDeleteSelection.gridx = 1;
+		gbc_btnDeleteSelection.gridy = 2;
+		panel_2.add(btnDeleteSelection, gbc_btnDeleteSelection);
+		
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{41, 81, 69, -46, 0};
-		gbl_panel_1.rowHeights = new int[]{21, 52, 23, 52, 22, 0, 0};
+		gbl_panel_1.columnWidths = new int[]{41, 50, 110, -46, 0};
+		gbl_panel_1.rowHeights = new int[]{21, 40, 27, 40, 20, 0, 40, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		Component rigidArea_4 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_4 = new GridBagConstraints();
 		gbc_rigidArea_4.gridwidth = 4;
-		gbc_rigidArea_4.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_4.insets = new Insets(0, 0, 5, 0);
 		gbc_rigidArea_4.gridx = 0;
 		gbc_rigidArea_4.gridy = 0;
 		panel_1.add(rigidArea_4, gbc_rigidArea_4);
@@ -168,6 +182,11 @@ public class Order extends JPanel {
 		btnNewButton.setFont(btnNewButton.getFont().deriveFont(btnNewButton.getFont().getSize() + 9f));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				launch.getPizza().setVisible(true);
+				launch.getPizza().repaint();
+				
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -188,8 +207,7 @@ public class Order extends JPanel {
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
-		gbc_rigidArea_1.gridheight = 5;
-		gbc_rigidArea_1.insets = new Insets(0, 0, 5, 0);
+		gbc_rigidArea_1.gridheight = 6;
 		gbc_rigidArea_1.gridx = 3;
 		gbc_rigidArea_1.gridy = 1;
 		panel_1.add(rigidArea_1, gbc_rigidArea_1);
@@ -205,6 +223,17 @@ public class Order extends JPanel {
 		btnNewButton_1.setFont(btnNewButton_1.getFont().deriveFont(btnNewButton_1.getFont().getSize() + 9f));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				model.clear();
+				orderList.add("Beverage");
+				
+				
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+					
+				}
+				
+				count++;
+				
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
@@ -224,16 +253,22 @@ public class Order extends JPanel {
 		gbc_rigidArea_3.gridy = 4;
 		panel_1.add(rigidArea_3, gbc_rigidArea_3);
 		
-		JButton btnBack = new JButton("");
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				launch.getMain().setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;
 		gbc_btnBack.insets = new Insets(0, 0, 0, 5);
 		gbc_btnBack.gridx = 1;
-		gbc_btnBack.gridy = 5;
+		gbc_btnBack.gridy = 6;
 		panel_1.add(btnBack, gbc_btnBack);
 		setLayout(groupLayout);
 
 	}
+	
 }
-
