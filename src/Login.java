@@ -1,3 +1,4 @@
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -9,14 +10,23 @@ import com.jgoodies.forms.factories.FormFactory;
 import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Component;
+
+import javax.swing.Box;
+
+import java.awt.Dimension;
+import java.util.ArrayList;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 
 public class Login extends JPanel {
@@ -25,138 +35,101 @@ public class Login extends JPanel {
 	 * Create the panel.
 	 */
 	JFrame frame;
-	
-	
 	private JTextField txtEnterPinHere;
-	public Login(JFrame f) {
+	public Login(JFrame f, Launch launch, ArrayList<String> orderList, DefaultListModel<String> model) {
+		setBackground(Color.LIGHT_GRAY);
+		setForeground(Color.LIGHT_GRAY);
 		frame = f;
-		setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,
-				FormFactory.RELATED_GAP_COLSPEC,
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,}));
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{40, 294, 40, 0};
+		gridBagLayout.rowHeights = new int[]{31, 20, 66, 28, 40, 23, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 		
-		Scanner input = null;
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogin.setFont(lblLogin.getFont().deriveFont(lblLogin.getFont().getSize() + 20f));
+		GridBagConstraints gbc_lblLogin = new GridBagConstraints();
+		gbc_lblLogin.fill = GridBagConstraints.BOTH;
+		gbc_lblLogin.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLogin.gridx = 1;
+		gbc_lblLogin.gridy = 0;
+		add(lblLogin, gbc_lblLogin);
 		
+		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
+		gbc_rigidArea_1.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_1.gridheight = 6;
+		gbc_rigidArea_1.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_1.gridx = 0;
+		gbc_rigidArea_1.gridy = 0;
+		add(rigidArea_1, gbc_rigidArea_1);
 		
-		AccountDB accounts = new AccountDB();
+		Component rigidArea_3 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_3 = new GridBagConstraints();
+		gbc_rigidArea_3.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_3.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_3.gridx = 1;
+		gbc_rigidArea_3.gridy = 1;
+		add(rigidArea_3, gbc_rigidArea_3);
 		
+		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
+		gbc_rigidArea.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea.gridheight = 6;
+		gbc_rigidArea.insets = new Insets(0, 0, 5, 0);
+		gbc_rigidArea.gridx = 2;
+		gbc_rigidArea.gridy = 0;
+		add(rigidArea, gbc_rigidArea);
 		
-		//ArrayList<String> accts = new ArrayList<String>();
+		txtEnterPinHere = new JTextField();
+		txtEnterPinHere.setFont(txtEnterPinHere.getFont().deriveFont(txtEnterPinHere.getFont().getSize() + 9f));
+		txtEnterPinHere.setText("Enter Pin Here");
+		GridBagConstraints gbc_txtEnterPinHere = new GridBagConstraints();
+		gbc_txtEnterPinHere.fill = GridBagConstraints.BOTH;
+		gbc_txtEnterPinHere.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEnterPinHere.gridx = 1;
+		gbc_txtEnterPinHere.gridy = 2;
+		add(txtEnterPinHere, gbc_txtEnterPinHere);
+		txtEnterPinHere.setColumns(10);
 		
-		//Account accts = new Account();
-		String acctPIN;
-		String line;
-		String words[] = new String[2];
-		String acctName;
-		try {
-			input = new Scanner(new File("Accounts"));
-			
-		} catch (FileNotFoundException e) {
-			//e.printStackTrace();
-		}
-		while(input.hasNextLine() == true){
-			
-			line = input.nextLine();
-			words = line.split(" ");
-			acctPIN = words[0];
-			acctName = words[1];
-			//System.out.println(acctPIN + "  " + acctName);
-			Account acct = new Account(acctPIN, acctName);
-			
-			accounts.addAccount(acct);
-			
-		}
-		
-		ArrayList<Account> a = accounts.getAccts();
-		
-		
+		Component rigidArea_5 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_5 = new GridBagConstraints();
+		gbc_rigidArea_5.fill = GridBagConstraints.VERTICAL;
+		gbc_rigidArea_5.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_5.gridx = 1;
+		gbc_rigidArea_5.gridy = 3;
+		add(rigidArea_5, gbc_rigidArea_5);
 		
 		JButton LoginButton = new JButton("Login");
+		LoginButton.setFont(LoginButton.getFont().deriveFont(LoginButton.getFont().getSize() + 9f));
 		LoginButton.setForeground(Color.BLACK);
 		LoginButton.addActionListener(new ActionListener() {
-		JPanel Main = new Main(frame);
-		
-		public void actionPerformed(ActionEvent arg0) {
-				
-			if (accounts.contains(txtEnterPinHere.getText())){
-				
-				accounts.setCurrentUser(txtEnterPinHere.getText());
+		JPanel Main = new Main(frame, launch, orderList, model);
+			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				frame.getContentPane().add(Main, "order");
 				Main.setVisible(true);
-				
 			}
-			System.out.println(accounts.getCurrentUser().getName());
-				
-			//System.out.println(txtEnterPinHere.getText());
-				
-		}
 		});
+		GridBagConstraints gbc_LoginButton = new GridBagConstraints();
+		gbc_LoginButton.insets = new Insets(0, 0, 5, 5);
+		gbc_LoginButton.fill = GridBagConstraints.BOTH;
+		gbc_LoginButton.gridx = 1;
+		gbc_LoginButton.gridy = 4;
+		add(LoginButton, gbc_LoginButton);
 		
-		txtEnterPinHere = new JTextField();
-		txtEnterPinHere.setText("Enter Pin Here");
-		add(txtEnterPinHere, "13, 10, 6, 1, fill, default");
-		txtEnterPinHere.setColumns(10);
-		add(LoginButton, "14, 14, 5, 1");
+		Component rigidArea_2 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_2 = new GridBagConstraints();
+		gbc_rigidArea_2.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_2.gridwidth = 3;
+		gbc_rigidArea_2.gridx = 0;
+		gbc_rigidArea_2.gridy = 6;
+		add(rigidArea_2, gbc_rigidArea_2);
+		//JPanel Main = new Main(frame);
 		
 		
-		JPanel Main = new Main(frame);
-		
-		JPanel Pizza = new Pizza();
 		this.setVisible(false);
 		
 	}
