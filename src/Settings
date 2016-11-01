@@ -38,7 +38,7 @@ public class Settings extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Settings(JFrame frame) {
+	public Settings(JFrame frame, Launch launch) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -65,8 +65,7 @@ public class Settings extends JPanel {
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 206, Short.MAX_VALUE)
-					.addGap(27))
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 233, Short.MAX_VALUE))
 		);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{0, 0};
@@ -98,16 +97,16 @@ public class Settings extends JPanel {
 			model.addElement("yassss");
 		}
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{40, 70, 70, 0, 70, 70, 40, 0};
-		gbl_panel_1.rowHeights = new int[]{20, 70, 1, 70, 20, 70, 10, 40, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWidths = new int[]{40, 40, 70, 140, 40, 0};
+		gbl_panel_1.rowHeights = new int[]{20, 70, 1, 70, 20, 70, 10, 16, 45, 20};
+		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 4.9E-324, 1.0};
 		panel_1.setLayout(gbl_panel_1);
 		
 		Component rigidArea_4 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_4 = new GridBagConstraints();
 		gbc_rigidArea_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_rigidArea_4.gridwidth = 6;
+		gbc_rigidArea_4.gridwidth = 4;
 		gbc_rigidArea_4.insets = new Insets(0, 0, 5, 5);
 		gbc_rigidArea_4.gridx = 0;
 		gbc_rigidArea_4.gridy = 0;
@@ -116,7 +115,7 @@ public class Settings extends JPanel {
 		JButton btnNewButton = new JButton("Create New User");
 		btnNewButton.setFont(btnNewButton.getFont().deriveFont(btnNewButton.getFont().getSize() + 4f));
 		btnNewButton.addActionListener(new ActionListener() {
-			NewUser NewUser = new NewUser(frame);
+			NewUser NewUser = new NewUser(frame,launch);
 			public void actionPerformed(ActionEvent arg0) {
 				frame.getContentPane().add(NewUser);
 				NewUser.setVisible(true);
@@ -124,7 +123,7 @@ public class Settings extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.gridwidth = 5;
+		gbc_btnNewButton.gridwidth = 3;
 		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
@@ -133,8 +132,8 @@ public class Settings extends JPanel {
 		
 		Component rigidArea_2 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_2 = new GridBagConstraints();
-		gbc_rigidArea_2.fill = GridBagConstraints.VERTICAL;
-		gbc_rigidArea_2.gridwidth = 5;
+		gbc_rigidArea_2.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_2.gridwidth = 3;
 		gbc_rigidArea_2.insets = new Insets(0, 0, 5, 5);
 		gbc_rigidArea_2.gridx = 1;
 		gbc_rigidArea_2.gridy = 2;
@@ -142,8 +141,8 @@ public class Settings extends JPanel {
 		
 		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
-		gbc_rigidArea.fill = GridBagConstraints.HORIZONTAL;
-		gbc_rigidArea.gridheight = 6;
+		gbc_rigidArea.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea.gridheight = 8;
 		gbc_rigidArea.insets = new Insets(0, 0, 5, 5);
 		gbc_rigidArea.gridx = 0;
 		gbc_rigidArea.gridy = 1;
@@ -151,9 +150,10 @@ public class Settings extends JPanel {
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
-		gbc_rigidArea_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_rigidArea_1.gridheight = 10;
-		gbc_rigidArea_1.gridx = 6;
+		gbc_rigidArea_1.insets = new Insets(0, 0, 5, 0);
+		gbc_rigidArea_1.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_1.gridheight = 9;
+		gbc_rigidArea_1.gridx = 4;
 		gbc_rigidArea_1.gridy = 0;
 		panel_1.add(rigidArea_1, gbc_rigidArea_1);
 		
@@ -161,10 +161,12 @@ public class Settings extends JPanel {
 		btnNewButton_2.setFont(btnNewButton_2.getFont().deriveFont(btnNewButton_2.getFont().getSize() + 4f));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				launch.getDeleteUser().setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.gridwidth = 5;
+		gbc_btnNewButton_2.gridwidth = 3;
 		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_2.gridx = 1;
@@ -180,13 +182,14 @@ public class Settings extends JPanel {
 		
 		Component rigidArea_5 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridwidth = 5;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth = 3;
 		gbc.insets = new Insets(0, 0, 5, 5);
 		gbc.gridx = 1;
 		gbc.gridy = 4;
 		panel_1.add(rigidArea_5, gbc);
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.gridwidth = 5;
+		gbc_btnNewButton_1.gridwidth = 3;
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton_1.gridx = 1;
@@ -196,20 +199,43 @@ public class Settings extends JPanel {
 		Component rigidArea_3 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_3 = new GridBagConstraints();
 		gbc_rigidArea_3.gridwidth = 2;
-		gbc_rigidArea_3.fill = GridBagConstraints.VERTICAL;
+		gbc_rigidArea_3.fill = GridBagConstraints.BOTH;
 		gbc_rigidArea_3.insets = new Insets(0, 0, 5, 5);
 		gbc_rigidArea_3.gridx = 1;
 		gbc_rigidArea_3.gridy = 6;
 		panel_1.add(rigidArea_3, gbc_rigidArea_3);
 		
 		JButton btnBack = new JButton("");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				launch.getMain().setVisible(true);
+				setVisible(false);
+			}
+		});
+		
+		Component rigidArea_6 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_6 = new GridBagConstraints();
+		gbc_rigidArea_6.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rigidArea_6.gridwidth = 3;
+		gbc_rigidArea_6.insets = new Insets(0, 0, 5, 5);
+		gbc_rigidArea_6.gridx = 1;
+		gbc_rigidArea_6.gridy = 7;
+		panel_1.add(rigidArea_6, gbc_rigidArea_6);
 		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;
-		gbc_btnBack.insets = new Insets(0, 0, 0, 5);
+		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
 		gbc_btnBack.gridx = 1;
-		gbc_btnBack.gridy = 7;
+		gbc_btnBack.gridy = 8;
 		panel_1.add(btnBack, gbc_btnBack);
+		
+		Component rigidArea_8 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_8 = new GridBagConstraints();
+		gbc_rigidArea_8.gridwidth = 5;
+		gbc_rigidArea_8.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_8.gridx = 0;
+		gbc_rigidArea_8.gridy = 9;
+		panel_1.add(rigidArea_8, gbc_rigidArea_8);
 		setLayout(groupLayout);
 
 	}
