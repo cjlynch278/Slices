@@ -6,12 +6,14 @@ import javax.swing.JFrame;
 
 import java.awt.CardLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 
 public class Launch {
@@ -20,7 +22,19 @@ public class Launch {
 	private JTextField textField;
 	private JButton btnNewButton;
 	private JPanel panel;
-
+	
+	public JPanel Main;
+	public  JPanel Login;
+	public JPanel Pizza;
+	public  JPanel Settings;
+	public JPanel NewUser ;
+	public JPanel Order;
+	public JPanel DeleteUser;
+	public JPanel Toppings;
+	
+	public DefaultListModel<String> model;
+	public static ArrayList<String> orderList;
+	public String Size;
 	/**
 	 * Launch the application.
 	 */
@@ -56,29 +70,80 @@ public class Launch {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
-		final JPanel Main = new Main(frame);
-		final JPanel Order = new Order(frame);
-		final JPanel Login = new Login(frame);
-		final JPanel Pizza = new Pizza();
+		model = new DefaultListModel<String>();
+		orderList = new ArrayList<String>();
 		
+		System.out.println(orderList.size());
+		
+		Toppings = new Toppings(frame,this,orderList,model);
+		Pizza = new Pizza(frame,this,orderList,model);
+		Main = new Main(frame,this,orderList,model);
+		Login = new Login(frame, this, orderList,model);
+		//Pizza = new Pizza(frmae, this);
+		Settings = new Settings(frame, this);
+		NewUser = new NewUser(frame,this);
+		DeleteUser = new DeleteUser(frame,this);
+		Order = new Order(frame,this,orderList, model);
 		//final JPanel Toppings = new Toppings();
 		
-		//frame.getContentPane().add(Toppings, "Toppings");
 		
-		frame.getContentPane().add(Pizza,"pizza");
-		Pizza.setVisible(false);
-		frame.getContentPane().add(Order, "order");
+		frame.getContentPane().add(Toppings, "Toppings");
+		Toppings.setVisible(false);
+		//frame.getContentPane().add(Toppings, "Toppings");
+		frame.getContentPane().add(Settings, "Settings");
+		Settings.setVisible(false);
+		frame.getContentPane().add(Order, "Order");
+		Order.setVisible(false);
+		//frame.getContentPane().add(Pizza,"pizza");
+		//Pizza.setVisible(false);
+		frame.getContentPane().add(DeleteUser, "Delete User");
 		frame.getContentPane().add(Login, "name_23596145660473");
 		Login.setVisible(true);
+		frame.getContentPane().add(NewUser, "NewUser");
+		NewUser.setVisible(false);
+		frame.getContentPane().add(Pizza, "Pizza");
+		frame.setVisible(true);
 		
-		Order.setVisible(false);
+		
 		frame.getContentPane().add(Main, "main");
 		
 		Main.setVisible(false);
 		
 		
 		
-		
+	
 	}
+	public JPanel getLogin(){
+		return Login;
+	}
+	public JPanel getSettings(){
+		return Settings;
+	}
+	public JPanel getMain(){
+		return Main;
+	}
+	public JPanel getOrder(){
+		return Order;
+	}
+	public JPanel getNewUser(){
+		return NewUser;
+	}
+	public JPanel getDeleteUser(){
+		return DeleteUser;
+	}
+	public JPanel getPizza(){	
+		return Pizza;
+	}
+	public JPanel getToppings(){
+		return Toppings;
+	}
+	public void setSize(String size){
+		Size = size;
+	}
+	public String getSize(){
+		return Size;
+	}
+
+
 
 }
