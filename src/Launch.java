@@ -15,7 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-
+//500 width 450 length
+//400 top width
 public class Launch {
 
 	private JFrame frame;
@@ -31,6 +32,10 @@ public class Launch {
 	public JPanel Order;
 	public JPanel DeleteUser;
 	public JPanel Toppings;
+	public JPanel EditAccounts;
+	public JPanel EditAccounts2;
+	public JPanel Receipt;
+	public JPanel EditPrices;
 	
 	public DefaultListModel<String> model;
 	public static ArrayList<String> orderList;
@@ -65,7 +70,7 @@ public class Launch {
 		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		  //frame.setSize(screenSize.width, screenSize.height);
 		frame = new JFrame();
-		frame.setBounds(200, 200, 500, 500);
+		frame.setBounds(200, 200, 525, 507);
 	
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
@@ -75,6 +80,8 @@ public class Launch {
 		
 		System.out.println(orderList.size());
 		
+		Receipt = new Receipt(orderList,model);
+		EditAccounts2 = new EditAccounts2(frame,this);
 		Toppings = new Toppings(frame,this,orderList,model);
 		Pizza = new Pizza(frame,this,orderList,model);
 		Main = new Main(frame,this,orderList,model);
@@ -84,9 +91,16 @@ public class Launch {
 		NewUser = new NewUser(frame,this);
 		DeleteUser = new DeleteUser(frame,this);
 		Order = new Order(frame,this,orderList, model);
+		EditAccounts = new EditAccounts(frame,this);
+		EditPrices = new EditPrices(frame, this);
 		//final JPanel Toppings = new Toppings();
 		
-		
+		frame.getContentPane().add(Receipt, "Receipt");
+		Receipt.setVisible(false);
+		frame.getContentPane().add(EditAccounts2, "EditAccounts2");
+		EditAccounts2.setVisible(false);
+		frame.getContentPane().add(EditAccounts,"EditAccounts");
+		EditAccounts.setVisible(false);
 		frame.getContentPane().add(Toppings, "Toppings");
 		Toppings.setVisible(false);
 		//frame.getContentPane().add(Toppings, "Toppings");
@@ -102,8 +116,9 @@ public class Launch {
 		frame.getContentPane().add(NewUser, "NewUser");
 		NewUser.setVisible(false);
 		frame.getContentPane().add(Pizza, "Pizza");
-		frame.setVisible(true);
-		
+		frame.setVisible(false);
+		frame.getContentPane().add(EditPrices, "EditPrices");
+		EditPrices.setVisible(false);
 		
 		frame.getContentPane().add(Main, "main");
 		
@@ -143,7 +158,18 @@ public class Launch {
 	public String getSize(){
 		return Size;
 	}
-
+	public JPanel getEditAccounts(){
+		return EditAccounts;
+	}
+	public JPanel getReceipt(){
+		return Receipt;
+	}
+	public JPanel getEditAccounts2(){
+		return EditAccounts2;
+	}
+	public JPanel getEditPrices(){
+		return EditPrices;
+	}
 
 
 }
