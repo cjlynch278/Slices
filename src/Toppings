@@ -50,63 +50,85 @@ public class Toppings extends JPanel {
 		orderList = o;
 		setBackground(Color.LIGHT_GRAY);
 		
+		
+		
+		for(int i =0; i<orderList.size() ; i++){
+			model.addElement((i+1) + ". " +orderList.get(i));
+		}
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{1, 271, 200, 0};
+		gridBagLayout.rowHeights = new int[]{1, 98, 371, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.LIGHT_GRAY);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.anchor = GridBagConstraints.NORTHWEST;
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 0;
+		add(panel, gbc_panel);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.LIGHT_GRAY);
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-							.addGap(10)
-							.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE))
-					.addGap(27))
-		);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
-		gbl_panel_3.columnWidths = new int[]{0, 0};
-		gbl_panel_3.rowHeights = new int[]{0, 0, 0};
-		gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_3.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_3.columnWidths = new int[]{100, 200, 75, 25, 0};
+		gbl_panel_3.rowHeights = new int[]{50, 50, 0};
+		gbl_panel_3.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		JLabel lblNewLabel_1 = new JLabel("Choose A Topping");
-		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 20f));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel_1.gridheight = 2;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 0;
-		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		Component rigidArea_6 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_6 = new GridBagConstraints();
+		gbc_rigidArea_6.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_6.gridheight = 2;
+		gbc_rigidArea_6.insets = new Insets(0, 0, 0, 5);
+		gbc_rigidArea_6.gridx = 0;
+		gbc_rigidArea_6.gridy = 0;
+		panel_3.add(rigidArea_6, gbc_rigidArea_6);
+		
+		JLabel label = new JLabel("Order");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(label.getFont().deriveFont(label.getFont().getSize() + 20f));
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.fill = GridBagConstraints.BOTH;
+		gbc_label.gridheight = 2;
+		gbc_label.insets = new Insets(0, 0, 0, 5);
+		gbc_label.gridx = 1;
+		gbc_label.gridy = 0;
+		panel_3.add(label, gbc_label);
+		
+		Component rigidArea_8 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_8 = new GridBagConstraints();
+		gbc_rigidArea_8.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_8.gridheight = 2;
+		gbc_rigidArea_8.gridx = 3;
+		gbc_rigidArea_8.gridy = 0;
+		panel_3.add(rigidArea_8, gbc_rigidArea_8);
+		
+		JButton button = new JButton("Check Out");
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.fill = GridBagConstraints.BOTH;
+		gbc_button.insets = new Insets(0, 0, 0, 5);
+		gbc_button.gridx = 2;
+		gbc_button.gridy = 1;
+		panel_3.add(button, gbc_button);
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.gridwidth = 2;
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_3.gridx = 1;
+		gbc_panel_3.gridy = 1;
+		add(panel_3, gbc_panel_3);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.LIGHT_GRAY);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 20};
+		gbl_panel_2.columnWidths = new int[]{0, 0, 0};
 		gbl_panel_2.rowHeights = new int[]{38, 217, 1, 0};
-		gbl_panel_2.columnWeights = new double[]{1.0, 1.0, 1.0, 0.0};
+		gbl_panel_2.columnWeights = new double[]{1.0, 1.0, 1.0};
 		gbl_panel_2.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
@@ -116,36 +138,20 @@ public class Toppings extends JPanel {
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.gridwidth = 3;
 		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
 		panel_2.add(lblNewLabel, gbc_lblNewLabel);
-		
-		
-		//DefaultListModel<String> listModel = new DefaultListModel<String>();
-		
-		Component rigidArea_6 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_6 = new GridBagConstraints();
-		gbc_rigidArea_6.gridheight = 3;
-		gbc_rigidArea_6.gridx = 3;
-		gbc_rigidArea_6.gridy = 0;
-		panel_2.add(rigidArea_6, gbc_rigidArea_6);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 3;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_2.add(scrollPane, gbc_scrollPane);
-		
-		
-		
-		for(int i =0; i<orderList.size() ; i++){
-			model.addElement((i+1) + ". " +orderList.get(i));
-		}
 		JList<String> list = new JList<String>(model);
 		list.setFont(list.getFont().deriveFont(list.getFont().getSize() + 8f));
 		scrollPane.setViewportView(list);
@@ -162,16 +168,12 @@ public class Toppings extends JPanel {
 				}
 			}
 		});
-		btnDeleteSelection.setFont(btnDeleteSelection.getFont().deriveFont(btnDeleteSelection.getFont().getSize() + 4f));
-		GridBagConstraints gbc_btnDeleteSelection = new GridBagConstraints();
-		gbc_btnDeleteSelection.fill = GridBagConstraints.BOTH;
-		gbc_btnDeleteSelection.insets = new Insets(0, 0, 0, 5);
-		gbc_btnDeleteSelection.gridx = 1;
-		gbc_btnDeleteSelection.gridy = 2;
-		panel_2.add(btnDeleteSelection, gbc_btnDeleteSelection);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.LIGHT_GRAY);
 		
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{10, 103, 108, 10, 0};
+		gbl_panel_1.columnWidths = new int[]{20, 103, 108, 50, 0};
 		gbl_panel_1.rowHeights = new int[]{21, 40, 10, 40, 10, 0, 10, 34, 10, 40, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
@@ -186,7 +188,7 @@ public class Toppings extends JPanel {
 		panel_1.add(rigidArea_4, gbc_rigidArea_4);
 		
 		JButton btnNewButton = new JButton("Pepperroni");
-		btnNewButton.setFont(btnNewButton.getFont().deriveFont(btnNewButton.getFont().getSize() + 2f));
+		btnNewButton.setFont(btnNewButton.getFont().deriveFont(btnNewButton.getFont().getSize() + 1f));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				model.clear();
@@ -196,10 +198,18 @@ public class Toppings extends JPanel {
 					model.addElement((i+1) + ". " + orderList.get(i));
 					
 				}
+				
 					
 			
 			}
 		});
+		
+		Component rigidArea_10 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_10 = new GridBagConstraints();
+		gbc_rigidArea_10.insets = new Insets(0, 0, 5, 0);
+		gbc_rigidArea_10.gridx = 3;
+		gbc_rigidArea_10.gridy = 0;
+		panel_1.add(rigidArea_10, gbc_rigidArea_10);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
@@ -208,7 +218,6 @@ public class Toppings extends JPanel {
 		panel_1.add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Mushrooms");
-		btnNewButton_1.setFont(btnNewButton_1.getFont().deriveFont(btnNewButton_1.getFont().getSize() + 2f));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.clear();
@@ -255,7 +264,7 @@ public class Toppings extends JPanel {
 		panel_1.add(rigidArea, gbc_rigidArea);
 		
 		JButton btnLarge = new JButton("Bacon");
-		btnLarge.setFont(btnLarge.getFont().deriveFont(btnLarge.getFont().getSize() + 2f));
+		btnLarge.setFont(btnLarge.getFont().deriveFont(btnLarge.getFont().getSize() + 1f));
 		GridBagConstraints gbc_btnLarge = new GridBagConstraints();
 		gbc_btnLarge.fill = GridBagConstraints.BOTH;
 		gbc_btnLarge.insets = new Insets(0, 0, 5, 5);
@@ -264,11 +273,11 @@ public class Toppings extends JPanel {
 		panel_1.add(btnLarge, gbc_btnLarge);
 		
 		JButton btnSausage = new JButton("Sausage");
+		btnSausage.setFont(btnSausage.getFont().deriveFont(btnSausage.getFont().getSize() + 1f));
 		btnSausage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSausage.setFont(btnSausage.getFont().deriveFont(btnSausage.getFont().getSize() + 2f));
 		GridBagConstraints gbc_btnSausage = new GridBagConstraints();
 		gbc_btnSausage.fill = GridBagConstraints.BOTH;
 		gbc_btnSausage.insets = new Insets(0, 0, 5, 5);
@@ -294,7 +303,7 @@ public class Toppings extends JPanel {
 		});
 		
 		JButton btnOnion = new JButton("Onions");
-		btnOnion.setFont(btnOnion.getFont().deriveFont(btnOnion.getFont().getSize() + 2f));
+		btnOnion.setFont(btnOnion.getFont().deriveFont(btnOnion.getFont().getSize() + 1f));
 		GridBagConstraints gbc_btnOnion = new GridBagConstraints();
 		gbc_btnOnion.fill = GridBagConstraints.BOTH;
 		gbc_btnOnion.insets = new Insets(0, 0, 5, 5);
@@ -303,7 +312,6 @@ public class Toppings extends JPanel {
 		panel_1.add(btnOnion, gbc_btnOnion);
 		
 		JButton btnExtraCheese = new JButton("Extra Cheese");
-		btnExtraCheese.setFont(btnExtraCheese.getFont().deriveFont(btnExtraCheese.getFont().getSize() + 2f));
 		GridBagConstraints gbc_btnExtraCheese = new GridBagConstraints();
 		gbc_btnExtraCheese.fill = GridBagConstraints.BOTH;
 		gbc_btnExtraCheese.insets = new Insets(0, 0, 5, 5);
@@ -321,7 +329,6 @@ public class Toppings extends JPanel {
 		panel_1.add(rigidArea_5, gbc_rigidArea_5);
 		
 		JButton btnGreenPepper = new JButton("Green Peppers");
-		btnGreenPepper.setFont(btnGreenPepper.getFont().deriveFont(btnGreenPepper.getFont().getSize() + 1f));
 		btnGreenPepper.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -334,7 +341,11 @@ public class Toppings extends JPanel {
 		panel_1.add(btnGreenPepper, gbc_btnGreenPepper);
 		
 		JButton btnNone = new JButton("None");
-		btnNone.setFont(btnNone.getFont().deriveFont(btnNone.getFont().getSize() + 3f));
+		btnNone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNone.setFont(btnNone.getFont().deriveFont(btnNone.getFont().getSize() + 2f));
 		GridBagConstraints gbc_btnNone = new GridBagConstraints();
 		gbc_btnNone.fill = GridBagConstraints.BOTH;
 		gbc_btnNone.insets = new Insets(0, 0, 5, 5);
@@ -356,9 +367,26 @@ public class Toppings extends JPanel {
 		gbc_btnBack.gridx = 1;
 		gbc_btnBack.gridy = 9;
 		panel_1.add(btnBack, gbc_btnBack);
-		setLayout(groupLayout);
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.anchor = GridBagConstraints.EAST;
+		gbc_panel_1.fill = GridBagConstraints.VERTICAL;
+		gbc_panel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_1.gridx = 1;
+		gbc_panel_1.gridy = 2;
+		add(panel_1, gbc_panel_1);
+		btnDeleteSelection.setFont(btnDeleteSelection.getFont().deriveFont(btnDeleteSelection.getFont().getSize() + 4f));
+		GridBagConstraints gbc_btnDeleteSelection = new GridBagConstraints();
+		gbc_btnDeleteSelection.gridwidth = 3;
+		gbc_btnDeleteSelection.fill = GridBagConstraints.BOTH;
+		gbc_btnDeleteSelection.gridx = 0;
+		gbc_btnDeleteSelection.gridy = 2;
+		panel_2.add(btnDeleteSelection, gbc_btnDeleteSelection);
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
+		gbc_panel_2.gridx = 2;
+		gbc_panel_2.gridy = 2;
+		add(panel_2, gbc_panel_2);
 
 	}
-
 }
 
