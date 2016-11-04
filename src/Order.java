@@ -90,7 +90,7 @@ public class Order extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton_2.setIcon(new ImageIcon(Order.class.getResource("/Backicon/rsz_checkout-light.png")));
+		//btnNewButton_2.setIcon(new ImageIcon(Order.class.getResource("/Backicon/rsz_checkout-light.png")));
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
