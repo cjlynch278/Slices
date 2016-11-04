@@ -26,6 +26,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
@@ -44,7 +48,7 @@ public class NewUser extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NewUser(JFrame frame, Launch launch) {
+	public NewUser(JFrame frame, Launch launch, AccountDB accounts) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -206,6 +210,8 @@ public class NewUser extends JPanel {
 		JButton btnBack = new JButton("");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+					
+				
 				launch.getSettings().setVisible(true);
 				setVisible(false);
 			}
@@ -213,12 +219,41 @@ public class NewUser extends JPanel {
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(btnSubmit.getFont().deriveFont(btnSubmit.getFont().getSize() + 8f));
+		
+		
 		GridBagConstraints gbc_btnSubmit = new GridBagConstraints();
 		gbc_btnSubmit.fill = GridBagConstraints.BOTH;
 		gbc_btnSubmit.insets = new Insets(0, 0, 5, 5);
 		gbc_btnSubmit.gridx = 2;
 		gbc_btnSubmit.gridy = 7;
 		panel_1.add(btnSubmit, gbc_btnSubmit);
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtEnterUserName.getText();
+				if (txtEnterPin.getText().equals(txtReenterPin.getText())&& txtEnterPin.getText().length()==4){
+					Account acct = new Account(txtEnterPin.getText(), txtEnterUserName.getText());
+					accounts.addAccount(acct);
+					String entry = "\n";
+					entry += txtEnterPin.getText() + " " +txtEnterUserName.getText();
+					
+					
+					try {
+						
+					    Files.write(Paths.get("Accounts"), entry.getBytes(), StandardOpenOption.APPEND);
+					    
+					}catch (IOException e1) {
+						
+					}
+					launch.getSettings().setVisible(true);
+					setVisible(false);
+					
+				}
+				
+				
+			}
+		});
+		
 		
 		Component rigidArea_7 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_7 = new GridBagConstraints();
