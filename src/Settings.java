@@ -38,7 +38,7 @@ public class Settings extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Settings(JFrame frame, Launch launch) {
+	public Settings(JFrame frame, Launch launch, AccountDB accounts, DefaultListModel<String> AccountsModel) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -118,7 +118,7 @@ public class Settings extends JPanel {
 		JButton btnNewButton = new JButton("Create New User");
 		btnNewButton.setFont(btnNewButton.getFont().deriveFont(btnNewButton.getFont().getSize() + 4f));
 		btnNewButton.addActionListener(new ActionListener() {
-			NewUser NewUser = new NewUser(frame,launch);
+			NewUser NewUser = new NewUser(frame,launch, accounts);
 			public void actionPerformed(ActionEvent arg0) {
 				frame.getContentPane().add(NewUser);
 				NewUser.setVisible(true);
@@ -163,8 +163,20 @@ public class Settings extends JPanel {
 		btnNewButton_2.setFont(btnNewButton_2.getFont().deriveFont(btnNewButton_2.getFont().getSize() + 4f));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AccountsModel.clear();
+				System.out.println(accounts.getCurrentUser().getName());
+				for (Account a : accounts.getAccts() ){
+					//if(!accounts.getCurrentUser().equals(a)){
+						
+						String entry = a.getPIN() + "  " + a.getName();
+						AccountsModel.addElement(entry);
+					//}
+				}
+				
 				launch.getDeleteUser().setVisible(true);
 				setVisible(false);
+						
+				
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
