@@ -357,4 +357,3 @@ public class EditPrices extends JPanel {
 
 	}
 }
-
