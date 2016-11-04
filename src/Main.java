@@ -26,7 +26,7 @@ public class Main extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Main(JFrame frame, Launch launch, ArrayList<String> orderList, DefaultListModel<String> model) {
+	public Main(JFrame frame, Launch launch, ArrayList<String> orderList, DefaultListModel<String> model, AccountDB accounts, DefaultListModel<String> AccountsModel) {
 		setBackground(Color.LIGHT_GRAY);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 321, 20, 0};
@@ -35,7 +35,7 @@ public class Main extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JPanel settings = new Settings(frame,launch);
+		JPanel settings = new Settings(frame,launch, accounts, AccountsModel);
 		JButton btnNewButton_2 = new JButton("Settings");
 		btnNewButton_2.setFont(btnNewButton_2.getFont().deriveFont(btnNewButton_2.getFont().getSize() + 4f));
 		btnNewButton_2.addActionListener(new ActionListener() {
