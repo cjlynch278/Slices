@@ -12,8 +12,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 //500 width 450 length
 //400 top width
@@ -38,6 +41,8 @@ public class Launch {
 	public JPanel EditPrices;
 	
 	public DefaultListModel<String> model;
+
+	public DefaultListModel<String> AccountModel;
 	public static ArrayList<String> orderList;
 	public String Size;
 	/**
@@ -76,20 +81,56 @@ public class Launch {
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
 		model = new DefaultListModel<String>();
+		AccountModel = new DefaultListModel<String>();
 		orderList = new ArrayList<String>();
 		
 		System.out.println(orderList.size());
+		
+		
+		Scanner input = null;
+		AccountDB accounts = new AccountDB();
+
+		String acctPIN;
+		String line;
+		String words[] = new String[2];
+		String acctName;
+		try {
+			input = new Scanner(new File("Accounts"));
+
+		} catch (FileNotFoundException e) {
+			// e.printStackTrace();
+		}
+		while (input.hasNextLine() == true) {
+
+			line = input.nextLine();
+			if (!line.equals("")) {
+				words = line.split(" ");
+				acctPIN = words[0];
+				acctName = words[1];
+				// System.out.println(acctPIN + " " + acctName);
+				Account acct = new Account(acctPIN, acctName);
+
+				accounts.addAccount(acct);
+				accounts.setCurrentUser(acctPIN);
+			}
+		}
+
+		input.close();
+
+		
+		
+		
 		
 		Receipt = new Receipt(orderList,model);
 		EditAccounts2 = new EditAccounts2(frame,this);
 		Toppings = new Toppings(frame,this,orderList,model);
 		Pizza = new Pizza(frame,this,orderList,model);
-		Main = new Main(frame,this,orderList,model);
-		Login = new Login(frame, this, orderList,model);
+		Main = new Main(frame,this,orderList,model, accounts, AccountModel);
+		Login = new Login(frame, this, orderList,model, accounts, AccountModel);
 		//Pizza = new Pizza(frmae, this);
-		Settings = new Settings(frame, this);
-		NewUser = new NewUser(frame,this);
-		DeleteUser = new DeleteUser(frame,this);
+		Settings = new Settings(frame, this, accounts, AccountModel);
+		NewUser = new NewUser(frame,this, accounts);
+		DeleteUser = new DeleteUser(frame,this, accounts, AccountModel);
 		Order = new Order(frame,this,orderList, model);
 		EditAccounts = new EditAccounts(frame,this);
 		EditPrices = new EditPrices(frame, this);
