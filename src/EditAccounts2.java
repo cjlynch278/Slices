@@ -256,4 +256,3 @@ public class EditAccounts2 extends JPanel {
 
 	}
 }
-
