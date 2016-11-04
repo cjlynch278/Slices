@@ -188,7 +188,7 @@ public class Pizza extends JPanel {
 		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JButton btnNewButton_2 = new JButton("Check Out");
-		btnNewButton_2.setIcon(new ImageIcon(Pizza.class.getResource("/Backicon/rsz_checkout-light.png")));
+		//btnNewButton_2.setIcon(new ImageIcon(Pizza.class.getResource("/Backicon/rsz_checkout-light.png")));
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
