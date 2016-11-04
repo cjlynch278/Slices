@@ -26,6 +26,13 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
@@ -41,7 +48,7 @@ public class DeleteUser extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public DeleteUser(JFrame frame, Launch launch) {
+	public DeleteUser(JFrame frame, Launch launch, AccountDB accounts, DefaultListModel<String> AccountModel) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -86,17 +93,10 @@ public class DeleteUser extends JPanel {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		listModel.addElement("hayyylo");
-		listModel.addElement("Yasss");
-		for(int i = 0; i< 103; i++){
-			listModel.addElement("Yassssss");
-		}
+		//DefaultListModel<String> listModel = new DefaultListModel<String>();
 		
-		DefaultListModel<String> model = new DefaultListModel<>();
-		for(int i =0; i< 100 ; i++){
-			model.addElement("yassss");
-		}
+		
+		
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{40, 70, 70, 70, 40, 0};
 		gbl_panel_1.rowHeights = new int[]{20, 50, 13, 50, 20, 50, 10, 40, 10, 45, 20};
@@ -134,6 +134,7 @@ public class DeleteUser extends JPanel {
 		JButton btnBack = new JButton("");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				launch.getSettings().setVisible(true);
 				setVisible(false);
 			}
@@ -170,6 +171,40 @@ public class DeleteUser extends JPanel {
 		gbc_btnDelete.gridy = 7;
 		panel_1.add(btnDelete, gbc_btnDelete);
 		
+
+		JList<String> list = new JList<String>(AccountModel);
+		
+		
+		list.setFont(list.getFont().deriveFont(list.getFont().getSize() + 8f));
+		scrollPane.setViewportView(list);
+		/*
+		System.out.println(accounts.getCurrentUser().getName());
+		for (Account a : accounts.getAccts() ){
+			//if(!accounts.getCurrentUser().equals(a)){
+				
+				String entry = a.getPIN() + "  " + a.getName();
+				AccountModel.addElement(entry);
+			//}
+		}
+		*/
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				accounts.closeAccount(list.getSelectedIndex());
+
+				AccountModel.clear();
+				
+				for (Account a : accounts.getAccts() ){
+					String entry = a.getPIN() + "  " + a.getName();
+					AccountModel.addElement(entry);
+					
+				}
+				
+							
+				
+			}
+		});
+		
+		
 		Component rigidArea_2 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_2 = new GridBagConstraints();
 		gbc_rigidArea_2.insets = new Insets(0, 0, 5, 5);
@@ -195,4 +230,5 @@ public class DeleteUser extends JPanel {
 
 	}
 }
+
 
