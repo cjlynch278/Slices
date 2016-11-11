@@ -164,13 +164,11 @@ public class Settings extends JPanel {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AccountsModel.clear();
-				System.out.println(accounts.getCurrentUser().getName());
+				
 				for (Account a : accounts.getAccts() ){
-					//if(!accounts.getCurrentUser().equals(a)){
-						
 						String entry = a.getPIN() + "  " + a.getName();
 						AccountsModel.addElement(entry);
-					//}
+					
 				}
 				
 				launch.getDeleteUser().setVisible(true);
@@ -222,6 +220,17 @@ public class Settings extends JPanel {
 		JButton btnNewButton_3 = new JButton("Edit User");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				AccountsModel.clear();
+				
+				for (Account a : accounts.getAccts() ){
+						
+					String entry = a.getPIN() + "  " + a.getName();
+					AccountsModel.addElement(entry);
+					
+				}
+				
+				
 				setVisible(false);
 				launch.getEditAccounts().setVisible(true);
 			}
