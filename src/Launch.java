@@ -42,6 +42,8 @@ public class Launch {
 	
 	public DefaultListModel<String> model;
 
+	AccountDB accounts = new AccountDB();
+
 	public DefaultListModel<String> AccountModel;
 	public static ArrayList<String> orderList;
 	public String Size;
@@ -88,12 +90,11 @@ public class Launch {
 		
 		
 		Scanner input = null;
-		AccountDB accounts = new AccountDB();
-
+		
 		String acctPIN;
 		String line;
 		String words[] = new String[2];
-		String acctName;
+		String acctName = "";
 		try {
 			input = new Scanner(new File("Accounts"));
 
@@ -106,12 +107,15 @@ public class Launch {
 			if (!line.equals("")) {
 				words = line.split(" ");
 				acctPIN = words[0];
-				acctName = words[1];
+				for(int i = 1; i <words.length; i++){
+					acctName += words[i] + " ";
+				}
 				// System.out.println(acctPIN + " " + acctName);
 				Account acct = new Account(acctPIN, acctName);
 
 				accounts.addAccount(acct);
 				accounts.setCurrentUser(acctPIN);
+				acctName = "";
 			}
 		}
 
@@ -122,7 +126,7 @@ public class Launch {
 		
 		
 		Receipt = new Receipt(orderList,model);
-		EditAccounts2 = new EditAccounts2(frame,this);
+		//EditAccounts2 = new EditAccounts2(frame,this, accounts);
 		Toppings = new Toppings(frame,this,orderList,model);
 		Pizza = new Pizza(frame,this,orderList,model);
 		Main = new Main(frame,this,orderList,model, accounts, AccountModel);
@@ -132,14 +136,14 @@ public class Launch {
 		NewUser = new NewUser(frame,this, accounts);
 		DeleteUser = new DeleteUser(frame,this, accounts, AccountModel);
 		Order = new Order(frame,this,orderList, model);
-		EditAccounts = new EditAccounts(frame,this);
+		EditAccounts = new EditAccounts(frame,this, accounts, AccountModel);
 		EditPrices = new EditPrices(frame, this);
 		//final JPanel Toppings = new Toppings();
 		
 		frame.getContentPane().add(Receipt, "Receipt");
 		Receipt.setVisible(false);
-		frame.getContentPane().add(EditAccounts2, "EditAccounts2");
-		EditAccounts2.setVisible(false);
+		//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
+		//EditAccounts2.setVisible(false);
 		frame.getContentPane().add(EditAccounts,"EditAccounts");
 		EditAccounts.setVisible(false);
 		frame.getContentPane().add(Toppings, "Toppings");
@@ -165,12 +169,6 @@ public class Launch {
 		
 		Main.setVisible(false);
 		
-		
-		
-	
-	}
-	public JPanel getLogin(){
-		return Login;
 	}
 	public JPanel getSettings(){
 		return Settings;
@@ -204,9 +202,6 @@ public class Launch {
 	}
 	public JPanel getReceipt(){
 		return Receipt;
-	}
-	public JPanel getEditAccounts2(){
-		return EditAccounts2;
 	}
 	public JPanel getEditPrices(){
 		return EditPrices;
