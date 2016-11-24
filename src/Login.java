@@ -56,7 +56,7 @@ public class Login extends JPanel{
 
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogin.setFont(lblLogin.getFont().deriveFont(lblLogin.getFont().getSize() + 20f));
+		lblLogin.setFont(lblLogin.getFont().deriveFont(lblLogin.getFont().getSize() + 60f));
 		GridBagConstraints gbc_lblLogin = new GridBagConstraints();
 		gbc_lblLogin.fill = GridBagConstraints.BOTH;
 		gbc_lblLogin.insets = new Insets(0, 0, 5, 5);
