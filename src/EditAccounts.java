@@ -41,7 +41,7 @@ public class EditAccounts extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EditAccounts(JFrame frame, Launch launch) {
+	public EditAccounts(JFrame frame, Launch launch, AccountDB accounts, DefaultListModel<String> AccountsModel) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -49,12 +49,6 @@ public class EditAccounts extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
-		
-		
-		DefaultListModel<String> model = new DefaultListModel<>();
-		model.addElement("Franklin Pierce");
-		model.addElement("George Washington");
-		model.addElement("John AppleSeed");
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.LIGHT_GRAY);
@@ -64,17 +58,17 @@ public class EditAccounts extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
-				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
 				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+				.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 245, Short.MAX_VALUE))
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE))
 		);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{0, 0};
@@ -84,7 +78,7 @@ public class EditAccounts extends JPanel {
 		panel_3.setLayout(gbl_panel_3);
 		
 		JLabel lblNewLabel_1 = new JLabel("Modify Accounts");
-		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 20f));
+		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 60f));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
@@ -156,7 +150,7 @@ public class EditAccounts extends JPanel {
 		lblSelectAUser.setFont(lblSelectAUser.getFont().deriveFont(lblSelectAUser.getFont().getSize() + 6f));
 		lblSelectAUser.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JList<String> list = new JList<String>(model);
+		JList<String> list = new JList<String>(AccountsModel);
 		list.setFont(list.getFont().deriveFont(list.getFont().getSize() + 8f));
 		scrollPane.setViewportView(list);
 		
@@ -170,10 +164,12 @@ public class EditAccounts extends JPanel {
 		JButton btnDelete = new JButton("Edit");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				launch.getEditAccounts2().setVisible(true);
+				accounts.setEdit(list.getSelectedIndex());
+				setVisible(false);				
 				
-				System.out.println("pressed");
+				EditAccounts2 EditAccounts2 = new EditAccounts2(frame, launch, accounts, accounts.getEdit());
+				frame.getContentPane().add(EditAccounts2, "EditAccounts2");
+				EditAccounts2.setVisible(true);
 			}
 		});
 		btnDelete.setFont(btnDelete.getFont().deriveFont(btnDelete.getFont().getSize() + 8f));
