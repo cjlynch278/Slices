@@ -40,7 +40,9 @@ public class Launch {
 	public JPanel Receipt;
 	public JPanel EditPrices;
 	
-	public DefaultListModel<String> model;
+	public static DefaultListModel<String> model;
+
+	AccountDB accounts = new AccountDB();
 
 	public DefaultListModel<String> AccountModel;
 	public static ArrayList<String> orderList;
@@ -75,7 +77,8 @@ public class Launch {
 		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		  //frame.setSize(screenSize.width, screenSize.height);
 		frame = new JFrame();
-		frame.setBounds(200, 200, 525, 507);
+		frame.setBounds(0,0,600,800);
+		frame.setMinimumSize(new Dimension(700, 600));
 	
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
@@ -83,20 +86,17 @@ public class Launch {
 		model = new DefaultListModel<String>();
 		AccountModel = new DefaultListModel<String>();
 		orderList = new ArrayList<String>();
-		
-		System.out.println(orderList.size());
+	
 		
 		
 		Scanner input = null;
-		AccountDB accounts = new AccountDB();
-
+		
 		String acctPIN;
 		String line;
 		String words[] = new String[2];
-		String acctName;
+		String acctName = "";
 		try {
 			input = new Scanner(new File("Accounts"));
-
 		} catch (FileNotFoundException e) {
 			// e.printStackTrace();
 		}
@@ -106,12 +106,14 @@ public class Launch {
 			if (!line.equals("")) {
 				words = line.split(" ");
 				acctPIN = words[0];
-				acctName = words[1];
-				// System.out.println(acctPIN + " " + acctName);
+				for(int i = 1; i <words.length; i++){
+					acctName += words[i] + " ";
+				}
 				Account acct = new Account(acctPIN, acctName);
 
 				accounts.addAccount(acct);
 				accounts.setCurrentUser(acctPIN);
+				acctName = "";
 			}
 		}
 
@@ -121,25 +123,25 @@ public class Launch {
 		
 		
 		
-		Receipt = new Receipt(orderList,model);
-		EditAccounts2 = new EditAccounts2(frame,this);
-		Toppings = new Toppings(frame,this,orderList,model);
-		Pizza = new Pizza(frame,this,orderList,model);
+		Receipt = new Receipt(orderList,model,this);
+		//EditAccounts2 = new EditAccounts2(frame,this, accounts);
+		Toppings = new Toppings(this,model, orderList);
+		Pizza = new Pizza(this, model, orderList);
 		Main = new Main(frame,this,orderList,model, accounts, AccountModel);
 		Login = new Login(frame, this, orderList,model, accounts, AccountModel);
 		//Pizza = new Pizza(frmae, this);
 		Settings = new Settings(frame, this, accounts, AccountModel);
 		NewUser = new NewUser(frame,this, accounts);
 		DeleteUser = new DeleteUser(frame,this, accounts, AccountModel);
-		Order = new Order(frame,this,orderList, model);
-		EditAccounts = new EditAccounts(frame,this);
+		Order = new Order(this,model,orderList);
+		EditAccounts = new EditAccounts(frame,this, accounts, AccountModel);
 		EditPrices = new EditPrices(frame, this);
 		//final JPanel Toppings = new Toppings();
 		
 		frame.getContentPane().add(Receipt, "Receipt");
 		Receipt.setVisible(false);
-		frame.getContentPane().add(EditAccounts2, "EditAccounts2");
-		EditAccounts2.setVisible(false);
+		//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
+		//EditAccounts2.setVisible(false);
 		frame.getContentPane().add(EditAccounts,"EditAccounts");
 		EditAccounts.setVisible(false);
 		frame.getContentPane().add(Toppings, "Toppings");
@@ -165,12 +167,6 @@ public class Launch {
 		
 		Main.setVisible(false);
 		
-		
-		
-	
-	}
-	public JPanel getLogin(){
-		return Login;
 	}
 	public JPanel getSettings(){
 		return Settings;
@@ -204,9 +200,6 @@ public class Launch {
 	}
 	public JPanel getReceipt(){
 		return Receipt;
-	}
-	public JPanel getEditAccounts2(){
-		return EditAccounts2;
 	}
 	public JPanel getEditPrices(){
 		return EditPrices;
