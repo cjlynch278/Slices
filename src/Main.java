@@ -64,7 +64,7 @@ public class Main extends JPanel {
 		add(rigidArea_5, gbc_rigidArea_5);
 		
 		JLabel lblWelcome = new JLabel("Welcome!");
-		lblWelcome.setFont(lblWelcome.getFont().deriveFont(lblWelcome.getFont().getSize() + 20f));
+		lblWelcome.setFont(lblWelcome.getFont().deriveFont(lblWelcome.getFont().getSize() + 60f));
 		GridBagConstraints gbc_lblWelcome = new GridBagConstraints();
 		gbc_lblWelcome.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWelcome.gridx = 1;
@@ -126,8 +126,14 @@ public class Main extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//frame.getContentPane().add(Login);
 				setVisible(false);
-				launch.getLogin().setVisible(true);
-				
+				//launch.getLogin().setVisible(true);
+				Login Login = new Login(frame, launch, orderList,model, accounts, AccountsModel);
+				//EditAccounts2 EditAccounts2 = new EditAccounts2(frame, launch, accounts, accounts.getEdit());
+				//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
+				//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
+				frame.getContentPane().add(Login, "name_23596145660473");
+				Login.setVisible(true);
+				//EditAccounts2.setVisible(true);
 			}
 		});
 		btnLogout.setFont(btnLogout.getFont().deriveFont(btnLogout.getFont().getSize() + 4f));
