@@ -51,9 +51,6 @@ public class DeleteUser extends JPanel {
 	public DeleteUser(JFrame frame, Launch launch, AccountDB accounts, DefaultListModel<String> AccountModel) {
 		setBackground(Color.LIGHT_GRAY);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		
@@ -62,20 +59,15 @@ public class DeleteUser extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 245, Short.MAX_VALUE))
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 395, Short.MAX_VALUE))
 		);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{0, 0};
@@ -85,7 +77,7 @@ public class DeleteUser extends JPanel {
 		panel_3.setLayout(gbl_panel_3);
 		
 		JLabel lblNewLabel_1 = new JLabel("Delete User");
-		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 20f));
+		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 60f));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
@@ -131,7 +123,7 @@ public class DeleteUser extends JPanel {
 		gbc_rigidArea_1.gridy = 0;
 		panel_1.add(rigidArea_1, gbc_rigidArea_1);
 		
-		JButton btnBack = new JButton("");
+		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -199,8 +191,6 @@ public class DeleteUser extends JPanel {
 					
 				}
 				
-							
-				
 			}
 		});
 		
@@ -218,6 +208,20 @@ public class DeleteUser extends JPanel {
 		gbc_btnBack.gridx = 1;
 		gbc_btnBack.gridy = 9;
 		panel_1.add(btnBack, gbc_btnBack);
+		
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				launch.getMain().setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_btnMainMenu = new GridBagConstraints();
+		gbc_btnMainMenu.fill = GridBagConstraints.BOTH;
+		gbc_btnMainMenu.insets = new Insets(0, 0, 5, 5);
+		gbc_btnMainMenu.gridx = 3;
+		gbc_btnMainMenu.gridy = 9;
+		panel_1.add(btnMainMenu, gbc_btnMainMenu);
 		
 		Component rigidArea_6 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_6 = new GridBagConstraints();
