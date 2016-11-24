@@ -44,7 +44,7 @@ public class Launch {
 
 	AccountDB accounts = new AccountDB();
 
-	public DefaultListModel<String> AccountModel;
+	public static DefaultListModel<String> AccountModel;
 	public static ArrayList<String> orderList;
 	public String Size;
 	/**
