@@ -44,7 +44,7 @@ public class EditAccounts2 extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EditAccounts2(JFrame frame, Launch launch) {
+	public EditAccounts2(JFrame frame, Launch launch, AccountDB accounts, Account edit) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -61,17 +61,20 @@ public class EditAccounts2 extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
-				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+				.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 245, Short.MAX_VALUE))
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 297, Short.MAX_VALUE))
 		);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{0, 0};
@@ -80,8 +83,8 @@ public class EditAccounts2 extends JPanel {
 		gbl_panel_3.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		JLabel lblNewLabel_1 = new JLabel("Modify User Information");
-		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 20f));
+		JLabel lblNewLabel_1 = new JLabel("Modify User");
+		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 60f));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
@@ -89,17 +92,7 @@ public class EditAccounts2 extends JPanel {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		listModel.addElement("hayyylo");
-		listModel.addElement("Yasss");
-		for(int i = 0; i< 103; i++){
-			listModel.addElement("Yassssss");
-		}
 		
-		DefaultListModel<String> model = new DefaultListModel<>();
-		for(int i =0; i< 100 ; i++){
-			model.addElement("yassss");
-		}
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{40, 70, 70, 70, 40, 0};
 		gbl_panel_1.rowHeights = new int[]{20, 50, 13, 50, 20, 50, 10, 0, 10, 45, 20};
@@ -120,7 +113,7 @@ public class EditAccounts2 extends JPanel {
 		txtEnterUserName.setBackground(UIManager.getColor("Button.light"));
 		txtEnterUserName.setFont(txtEnterUserName.getFont().deriveFont(txtEnterUserName.getFont().getSize() + 9f));
 		txtEnterUserName.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEnterUserName.setText("Johnny Appleseed");
+		txtEnterUserName.setText(edit.getName());
 		GridBagConstraints gbc_txtEnterUserName = new GridBagConstraints();
 		gbc_txtEnterUserName.gridwidth = 3;
 		gbc_txtEnterUserName.insets = new Insets(0, 0, 5, 5);
@@ -161,7 +154,7 @@ public class EditAccounts2 extends JPanel {
 		txtEnterPin.setBackground(UIManager.getColor("Button.light"));
 		txtEnterPin.setFont(txtEnterPin.getFont().deriveFont(txtEnterPin.getFont().getSize() + 9f));
 		txtEnterPin.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEnterPin.setText("1234");
+		txtEnterPin.setText(edit.getPIN());
 		GridBagConstraints gbc_txtEnterPin = new GridBagConstraints();
 		gbc_txtEnterPin.gridwidth = 3;
 		gbc_txtEnterPin.insets = new Insets(0, 0, 5, 5);
@@ -184,7 +177,7 @@ public class EditAccounts2 extends JPanel {
 		txtReenterPin.setBackground(UIManager.getColor("Button.light"));
 		txtReenterPin.setFont(txtReenterPin.getFont().deriveFont(txtReenterPin.getFont().getSize() + 9f));
 		txtReenterPin.setHorizontalAlignment(SwingConstants.LEFT);
-		txtReenterPin.setText("1234");
+		txtReenterPin.setText(edit.getPIN());
 		GridBagConstraints gbc_txtReenterPin = new GridBagConstraints();
 		gbc_txtReenterPin.gridwidth = 3;
 		gbc_txtReenterPin.insets = new Insets(0, 0, 5, 5);
@@ -206,12 +199,27 @@ public class EditAccounts2 extends JPanel {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				launch.getSettings().setVisible(true);
+				launch.getEditAccounts().setVisible(true);
 				setVisible(false);
 			}
 		});
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				if(!txtEnterPin.getText().equals(txtReenterPin.getText())){
+					// put a output message that says that the pins don't match
+				}else{
+					accounts.editAccount(txtEnterUserName.getText(),txtEnterPin.getText());
+
+					launch.getSettings().setVisible(true);
+					setVisible(false);
+				}
+				
+			}
+		});
 		btnSubmit.setFont(btnSubmit.getFont().deriveFont(btnSubmit.getFont().getSize() + 8f));
 		GridBagConstraints gbc_btnSubmit = new GridBagConstraints();
 		gbc_btnSubmit.fill = GridBagConstraints.BOTH;
@@ -237,7 +245,7 @@ public class EditAccounts2 extends JPanel {
 		panel_1.add(btnBack, gbc_btnBack);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
-		btnMainMenu.setFont(btnMainMenu.getFont().deriveFont(btnMainMenu.getFont().getSize() + 3f));
+		btnMainMenu.setFont(btnMainMenu.getFont().deriveFont(btnMainMenu.getFont().getSize() + 6f));
 		GridBagConstraints gbc_btnMainMenu = new GridBagConstraints();
 		gbc_btnMainMenu.fill = GridBagConstraints.BOTH;
 		gbc_btnMainMenu.insets = new Insets(0, 0, 5, 5);
@@ -255,4 +263,5 @@ public class EditAccounts2 extends JPanel {
 		setLayout(groupLayout);
 
 	}
+	
 }
