@@ -65,17 +65,17 @@ public class NewUser extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
-				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+				.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 245, Short.MAX_VALUE))
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
 		);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{0, 0};
@@ -84,8 +84,8 @@ public class NewUser extends JPanel {
 		gbl_panel_3.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		JLabel lblNewLabel_1 = new JLabel("Enter New User Information");
-		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 20f));
+		JLabel lblNewLabel_1 = new JLabel("Create User");
+		lblNewLabel_1.setFont(lblNewLabel_1.getFont().deriveFont(lblNewLabel_1.getFont().getSize() + 60f));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.fill = GridBagConstraints.BOTH;
@@ -207,7 +207,7 @@ public class NewUser extends JPanel {
 		gbc_rigidArea_3.gridy = 6;
 		panel_1.add(rigidArea_3, gbc_rigidArea_3);
 		
-		JButton btnBack = new JButton("");
+		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
