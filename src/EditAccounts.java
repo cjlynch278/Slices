@@ -41,7 +41,7 @@ public class EditAccounts extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EditAccounts(JFrame frame, Launch launch, AccountDB accounts, DefaultListModel<String> AccountsModel) {
+	public EditAccounts(JFrame frame, Launch launch) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -49,6 +49,12 @@ public class EditAccounts extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.LIGHT_GRAY);
+		
+		
+		DefaultListModel<String> model = new DefaultListModel<>();
+		model.addElement("Franklin Pierce");
+		model.addElement("George Washington");
+		model.addElement("John AppleSeed");
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.LIGHT_GRAY);
@@ -150,7 +156,7 @@ public class EditAccounts extends JPanel {
 		lblSelectAUser.setFont(lblSelectAUser.getFont().deriveFont(lblSelectAUser.getFont().getSize() + 6f));
 		lblSelectAUser.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JList<String> list = new JList<String>(AccountsModel);
+		JList<String> list = new JList<String>(model);
 		list.setFont(list.getFont().deriveFont(list.getFont().getSize() + 8f));
 		scrollPane.setViewportView(list);
 		
@@ -164,12 +170,10 @@ public class EditAccounts extends JPanel {
 		JButton btnDelete = new JButton("Edit");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				accounts.setEdit(list.getSelectedIndex());
-				setVisible(false);				
+				setVisible(false);
+				launch.getEditAccounts2().setVisible(true);
 				
-				EditAccounts2 EditAccounts2 = new EditAccounts2(frame, launch, accounts, accounts.getEdit());
-				frame.getContentPane().add(EditAccounts2, "EditAccounts2");
-				EditAccounts2.setVisible(true);
+				System.out.println("pressed");
 			}
 		});
 		btnDelete.setFont(btnDelete.getFont().deriveFont(btnDelete.getFont().getSize() + 8f));

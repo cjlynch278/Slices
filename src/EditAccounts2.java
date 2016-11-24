@@ -44,7 +44,7 @@ public class EditAccounts2 extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EditAccounts2(JFrame frame, Launch launch, AccountDB accounts, Account edit) {
+	public EditAccounts2(JFrame frame, Launch launch) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		JPanel panel = new JPanel();
@@ -89,7 +89,17 @@ public class EditAccounts2 extends JPanel {
 		gbc_lblNewLabel_1.gridy = 0;
 		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		listModel.addElement("hayyylo");
+		listModel.addElement("Yasss");
+		for(int i = 0; i< 103; i++){
+			listModel.addElement("Yassssss");
+		}
 		
+		DefaultListModel<String> model = new DefaultListModel<>();
+		for(int i =0; i< 100 ; i++){
+			model.addElement("yassss");
+		}
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{40, 70, 70, 70, 40, 0};
 		gbl_panel_1.rowHeights = new int[]{20, 50, 13, 50, 20, 50, 10, 0, 10, 45, 20};
@@ -110,7 +120,7 @@ public class EditAccounts2 extends JPanel {
 		txtEnterUserName.setBackground(UIManager.getColor("Button.light"));
 		txtEnterUserName.setFont(txtEnterUserName.getFont().deriveFont(txtEnterUserName.getFont().getSize() + 9f));
 		txtEnterUserName.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEnterUserName.setText(edit.getName());
+		txtEnterUserName.setText("Johnny Appleseed");
 		GridBagConstraints gbc_txtEnterUserName = new GridBagConstraints();
 		gbc_txtEnterUserName.gridwidth = 3;
 		gbc_txtEnterUserName.insets = new Insets(0, 0, 5, 5);
@@ -151,7 +161,7 @@ public class EditAccounts2 extends JPanel {
 		txtEnterPin.setBackground(UIManager.getColor("Button.light"));
 		txtEnterPin.setFont(txtEnterPin.getFont().deriveFont(txtEnterPin.getFont().getSize() + 9f));
 		txtEnterPin.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEnterPin.setText(edit.getPIN());
+		txtEnterPin.setText("1234");
 		GridBagConstraints gbc_txtEnterPin = new GridBagConstraints();
 		gbc_txtEnterPin.gridwidth = 3;
 		gbc_txtEnterPin.insets = new Insets(0, 0, 5, 5);
@@ -174,7 +184,7 @@ public class EditAccounts2 extends JPanel {
 		txtReenterPin.setBackground(UIManager.getColor("Button.light"));
 		txtReenterPin.setFont(txtReenterPin.getFont().deriveFont(txtReenterPin.getFont().getSize() + 9f));
 		txtReenterPin.setHorizontalAlignment(SwingConstants.LEFT);
-		txtReenterPin.setText(edit.getPIN());
+		txtReenterPin.setText("1234");
 		GridBagConstraints gbc_txtReenterPin = new GridBagConstraints();
 		gbc_txtReenterPin.gridwidth = 3;
 		gbc_txtReenterPin.insets = new Insets(0, 0, 5, 5);
@@ -196,27 +206,12 @@ public class EditAccounts2 extends JPanel {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				launch.getEditAccounts().setVisible(true);
+				launch.getSettings().setVisible(true);
 				setVisible(false);
 			}
 		});
 		
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				if(!txtEnterPin.getText().equals(txtReenterPin.getText())){
-					// put a output message that says that the pins don't match
-				}else{
-					accounts.editAccount(txtEnterUserName.getText(),txtEnterPin.getText());
-
-					launch.getSettings().setVisible(true);
-					setVisible(false);
-				}
-				
-			}
-		});
 		btnSubmit.setFont(btnSubmit.getFont().deriveFont(btnSubmit.getFont().getSize() + 8f));
 		GridBagConstraints gbc_btnSubmit = new GridBagConstraints();
 		gbc_btnSubmit.fill = GridBagConstraints.BOTH;
@@ -260,5 +255,4 @@ public class EditAccounts2 extends JPanel {
 		setLayout(groupLayout);
 
 	}
-	
 }

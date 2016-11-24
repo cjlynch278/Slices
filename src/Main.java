@@ -126,14 +126,8 @@ public class Main extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//frame.getContentPane().add(Login);
 				setVisible(false);
-				//launch.getLogin().setVisible(true);
-				Login Login = new Login(frame, launch, orderList,model, accounts, AccountsModel);
-				//EditAccounts2 EditAccounts2 = new EditAccounts2(frame, launch, accounts, accounts.getEdit());
-				//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
-				//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
-				frame.getContentPane().add(Login, "name_23596145660473");
-				Login.setVisible(true);
-				//EditAccounts2.setVisible(true);
+				launch.getLogin().setVisible(true);
+				
 			}
 		});
 		btnLogout.setFont(btnLogout.getFont().deriveFont(btnLogout.getFont().getSize() + 4f));
