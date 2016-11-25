@@ -24,9 +24,7 @@ import javax.swing.ImageIcon;
 
 public class Settings extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+
 	public Settings(JFrame frame, Launch launch, AccountDB accounts, DefaultListModel<String> AccountsModel) {
 		setBackground(Color.LIGHT_GRAY);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -103,8 +101,23 @@ public class Settings extends JPanel {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				AccountsModel.clear();
+				
+				for (Account a : accounts.getAccts() ){
+						
+					String entry = a.getPIN() + "  " + a.getName();
+					AccountsModel.addElement(entry);
+					
+				}
+				
+				
 				setVisible(false);
 				launch.getEditAccounts().setVisible(true);
+				
+				
+				
+				//setVisible(false);
+				//launch.getEditAccounts().setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
