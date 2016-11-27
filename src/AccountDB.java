@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 
 public class AccountDB {
 
@@ -64,6 +66,8 @@ public class AccountDB {
 				}
 
 			}
+		} else{
+			JOptionPane.showMessageDialog(null, "Selected account is currently in use. It cannot be deleted.");
 		}
 
 	}
