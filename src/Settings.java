@@ -73,9 +73,13 @@ public class Settings extends JPanel {
 		OrderButton.addActionListener(new ActionListener() {
 		
 			public void actionPerformed(ActionEvent e) {
-				launch.getNewUser().setVisible(true);
-				setVisible(false);
-	
+				
+				
+				setVisible(false);			
+				
+				NewUser NewUser = new NewUser(frame, launch, accounts);
+				frame.getContentPane().add(NewUser, "NewUser");
+				NewUser.setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_OrderButton = new GridBagConstraints();
@@ -115,9 +119,6 @@ public class Settings extends JPanel {
 				launch.getEditAccounts().setVisible(true);
 				
 				
-				
-				//setVisible(false);
-				//launch.getEditAccounts().setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
@@ -135,7 +136,6 @@ public class Settings extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				AccountsModel.clear();
-				System.out.println(accounts.getCurrentUser().getName());
 				for (Account a : accounts.getAccts() ){
 					//if(!accounts.getCurrentUser().equals(a)){
 						
