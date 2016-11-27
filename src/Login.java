@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 
@@ -110,11 +111,7 @@ public class Login extends JPanel{
 		add(rigidArea_5, gbc_rigidArea_5);
 
 		
-		/*
-		for (Account a : accounts.getAccts() ){
-			System.out.println(a.getName()+"   "+a.getPIN());
-		}
-		*/
+	
 		
 		JButton LoginButton = new JButton("Login");
 		LoginButton.setFont(LoginButton.getFont().deriveFont(LoginButton.getFont().getSize() + 9f));
@@ -131,6 +128,8 @@ public class Login extends JPanel{
 					frame.getContentPane().add(Main, "order");
 					Main.setVisible(true);
 					
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid entry. Please reenter PIN.");
 				}
 				
 				// System.out.println(txtEnterPinHere.getText());
@@ -162,5 +161,3 @@ public class Login extends JPanel{
 	}
 
 }
-
-
