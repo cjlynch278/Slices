@@ -18,6 +18,7 @@ import java.awt.Dimension;
 import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -230,8 +231,25 @@ public class NewUser extends JPanel {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtEnterUserName.getText();
-				if (txtEnterPin.getText().equals(txtReenterPin.getText())&& txtEnterPin.getText().length()==4){
+				
+				
+				if(accounts.contains(txtEnterPin.getText())){
+					JOptionPane.showMessageDialog(null, "The PIN entered is already in use. Please re-enter PINs");
+				
+				} else if(txtEnterPin.getText().length() != 4){
+					JOptionPane.showMessageDialog(null, "PIN should be 4 digits long. Please Re-enter PINs");
+				
+				} else if(txtEnterUserName.getText().isEmpty() || txtEnterUserName.getText().trim().length() ==0){
+					JOptionPane.showMessageDialog(null, "No name entered. Please enter a name.");
+					
+				} else if(!txtEnterPin.getText().matches("[0-9]+")){
+					JOptionPane.showMessageDialog(null, "The PIN should only contain numbers. Please re-enter PINs.");
+				
+				} else if(!txtEnterPin.getText().equals(txtReenterPin.getText())){
+					
+					JOptionPane.showMessageDialog(null, "The PIN entries were not equal. Please re-enter PINs.");
+				} else if (txtEnterPin.getText().equals(txtReenterPin.getText())&& txtEnterPin.getText().length()==4){
+					
 					Account acct = new Account(txtEnterPin.getText(), txtEnterUserName.getText());
 					accounts.addAccount(acct);
 					String entry = "\n";
@@ -282,4 +300,3 @@ public class NewUser extends JPanel {
 
 	}
 }
-
