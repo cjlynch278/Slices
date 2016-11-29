@@ -208,8 +208,8 @@ public class EditAccounts2 extends JPanel {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(accounts.contains(txtEnterPin.getText()) && !edit.equals(accounts.getCurrentUser())){
+				// !edit.equals(accounts.getCurrentUser()) &&
+				if(accounts.contains(txtEnterPin.getText()) && !edit.getPIN().equals(txtEnterPin.getText())){
 					JOptionPane.showMessageDialog(null, "The PIN entered is already in use. Please re-enter PINs");
 				
 				} else if(txtEnterPin.getText().length() != 4){
