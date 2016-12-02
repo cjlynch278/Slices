@@ -41,12 +41,21 @@ public class Launch {
 	public JPanel EditPrices;
 	
 	public static DefaultListModel<String> model;
-
+	public static DefaultListModel<String> priceModel;
 	AccountDB accounts = new AccountDB();
+	ArrayList<Double> prices;
 
 	public static DefaultListModel<String> AccountModel;
 	public static ArrayList<String> orderList;
+	public static ArrayList<String> priceList;
 	public String Size;
+	public static double total;
+	public static JTextField priceText;
+	public static JTextField tax;
+	public static JTextField subTotal;
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -76,21 +85,46 @@ public class Launch {
 	private void initialize() {
 		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		  //frame.setSize(screenSize.width, screenSize.height);
-		frame = new JFrame();
+		
+		 
+		 
+		 
+		 frame = new JFrame();
 		frame.setBounds(0,0,600,800);
 		frame.setMinimumSize(new Dimension(700, 600));
 	
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
+		
+		
 		model = new DefaultListModel<String>();
+		priceModel = new DefaultListModel<String>();
 		AccountModel = new DefaultListModel<String>();
 		orderList = new ArrayList<String>();
-	
+		priceList = new ArrayList<String>();
+		priceText = new JTextField("default");
+		tax = new JTextField("default");
+		subTotal = new JTextField("default");
 		
+		total = 0;
 		
 		Scanner input = null;
 		
+		File file = new File("Prices");
+		 prices = new ArrayList<Double>();
+		Scanner scan;
+		try {
+			scan = new Scanner(file);
+			while(scan.hasNextLine()){
+				prices.add(Double.parseDouble(scan.nextLine()));
+			}
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		String acctPIN;
 		String line;
 		String words[] = new String[2];
@@ -119,21 +153,18 @@ public class Launch {
 
 		input.close();
 
-		
-		
-		
-		
-		Receipt = new Receipt(orderList,model,this);
+	
+		Receipt = new Receipt(orderList,model,this, total,priceList,priceModel, priceText, tax, subTotal);
 		//EditAccounts2 = new EditAccounts2(frame,this, accounts);
-		Toppings = new Toppings(this,model, orderList);
-		Pizza = new Pizza(this, model, orderList);
-		Main = new Main(frame,this,orderList,model, accounts, AccountModel);
-		Login = new Login(frame, this, orderList,model, accounts, AccountModel);
+		Toppings = new Toppings(this,model, orderList, total,priceList,priceModel);
+		Pizza = new Pizza(this, model, orderList,priceList);
+		Main = new Main(frame,this,orderList,model, accounts, AccountModel, total,priceList,priceModel);
+		Login = new Login(frame, this, orderList,model, accounts, AccountModel, total,priceList,priceModel);
 		//Pizza = new Pizza(frmae, this);
 		Settings = new Settings(frame, this, accounts, AccountModel);
 		NewUser = new NewUser(frame,this, accounts);
 		DeleteUser = new DeleteUser(frame,this, accounts, AccountModel);
-		Order = new Order(this,model,orderList);
+		Order = new Order(this,model,orderList, total,priceList, priceModel);
 		EditAccounts = new EditAccounts(frame,this, accounts, AccountModel);
 		EditPrices = new EditPrices(frame, this);
 		//final JPanel Toppings = new Toppings();
@@ -172,9 +203,21 @@ public class Launch {
 		return Settings;
 	}
 	public JPanel getMain(){
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
 		return Main;
 	}
 	public JPanel getOrder(){
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
 		return Order;
 	}
 	public JPanel getNewUser(){
@@ -184,9 +227,21 @@ public class Launch {
 		return DeleteUser;
 	}
 	public JPanel getPizza(){	
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
 		return Pizza;
 	}
 	public JPanel getToppings(){
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
 		return Toppings;
 	}
 	public void setSize(String size){
@@ -199,6 +254,16 @@ public class Launch {
 		return EditAccounts;
 	}
 	public JPanel getReceipt(){
+		double total = 0;
+		priceModel.clear();
+		
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			priceModel.addElement(priceList.get(i));
+		}
+		priceText.setText("Total: " + (double)(total + (total/prices.get(7))) + " ");
+		tax.setText("Tax " + total/prices.get(7) +" ");
+		subTotal.setText("SubTotal: "+total + " ");
 		return Receipt;
 	}
 	public JPanel getEditPrices(){
