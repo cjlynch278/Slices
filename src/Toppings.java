@@ -29,7 +29,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -42,14 +45,36 @@ import java.awt.Font;
 
 
 public class Toppings extends JPanel {
+	
 	public int count = 1;
 	public ArrayList<String> orderList;
+	private JTextField textField;
+	public double total;
+	
 	/**
 	 * Create the panel.
+	 * @param priceList 
+	 * @param priceModel 
 	 * @param orderList2 
 	 */
 
-	public Toppings(Launch launch, DefaultListModel<String> model, ArrayList<String> orderList) {
+	public Toppings(Launch launch, DefaultListModel<String> model, ArrayList<String> orderList, double t, ArrayList<String> priceList, DefaultListModel<String> priceModel) {
+		total = t;
+		File file = new File("Prices");
+		ArrayList<Double> prices = new ArrayList<Double>();
+		Scanner scan;
+		try {
+			scan = new Scanner(file);
+			while(scan.hasNextLine()){
+				
+				prices.add(Double.parseDouble(scan.nextLine()));
+			}
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
 		setBackground(Color.LIGHT_GRAY);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -72,14 +97,36 @@ public class Toppings extends JPanel {
 		JButton btnNewButton = new JButton("Pepperoni");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(total);
+				
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
+				
 				model.clear();
 				orderList.add("(" + launch.getSize() + ")" + " Peperronni Pizza" );
 
 				for(int i = 0; i < orderList.size(); i++){
 					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add((prices.get(2)+ prices.get(5)) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
 					
 				}
 			}
+			
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
@@ -91,6 +138,30 @@ public class Toppings extends JPanel {
 		JButton btnMushrooms = new JButton("Mushrooms");
 		btnMushrooms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(total);
+				model.clear();
+				orderList.add("(" + launch.getSize() + ")" + " Mushroom Pizza" );
+
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					total += prices.get(0) + prices.get(3);
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add((prices.get(2)+ prices.get(5)) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
 			}
 		});
 		GridBagConstraints gbc_btnMushrooms = new GridBagConstraints();
@@ -127,6 +198,34 @@ public class Toppings extends JPanel {
 		panel_1.add(rigidArea_2, gbc_rigidArea_2);
 		
 		JButton btnBacon = new JButton("Bacon");
+		btnBacon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(total);
+				model.clear();
+				orderList.add("(" + launch.getSize() + ")" + " Bacon Pizza" );
+
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					total += prices.get(0) + prices.get(3);
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add((prices.get(2)+ prices.get(5)) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
+			}
+		});
 		GridBagConstraints gbc_btnBacon = new GridBagConstraints();
 		gbc_btnBacon.fill = GridBagConstraints.BOTH;
 		gbc_btnBacon.insets = new Insets(0, 0, 5, 5);
@@ -137,6 +236,30 @@ public class Toppings extends JPanel {
 		JButton btnSausage = new JButton("Sausage");
 		btnSausage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(total);
+				model.clear();
+				orderList.add("(" + launch.getSize() + ")" + " Sausage Pizza" );
+
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					total += prices.get(0) + prices.get(3);
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add((prices.get(2)+ prices.get(5)) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
 			}
 		});
 		GridBagConstraints gbc_btnSausage = new GridBagConstraints();
@@ -160,16 +283,30 @@ public class Toppings extends JPanel {
 		btnNewButton_1.setFont(btnNewButton_1.getFont().deriveFont(btnNewButton_1.getFont().getSize() - 1f));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(total);
 				model.clear();
-				orderList.add("Beverage");
-				
-				
+				orderList.add("(" + launch.getSize() + ")" + " Extra Cheese" );
+
 				for(int i = 0; i < orderList.size(); i++){
 					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					total += prices.get(0) + prices.get(3);
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add((prices.get(2)+ prices.get(5)) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
 					
 				}
-				
-				count++;
 				
 			}
 		});
@@ -178,6 +315,30 @@ public class Toppings extends JPanel {
 		btnOnions.setFont(btnOnions.getFont().deriveFont(btnOnions.getFont().getSize() + 1f));
 		btnOnions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(total);
+				model.clear();
+				orderList.add("(" + launch.getSize() + ")" + " Onions Pizza" );
+
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					total += prices.get(0) + prices.get(3);
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add((prices.get(2)+ prices.get(5)) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
 			}
 		});
 		GridBagConstraints gbc_btnOnions = new GridBagConstraints();
@@ -207,6 +368,30 @@ public class Toppings extends JPanel {
 		btnGreenPeppers.setFont(btnGreenPeppers.getFont().deriveFont(btnGreenPeppers.getFont().getSize() - 1f));
 		btnGreenPeppers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(total);
+				model.clear();
+				orderList.add("(" + launch.getSize() + ")" + " Green Peppers" );
+
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					total += prices.get(0) + prices.get(3);
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add((prices.get(2)+ prices.get(5)) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
 			}
 		});
 		GridBagConstraints gbc_btnGreenPeppers = new GridBagConstraints();
@@ -217,6 +402,34 @@ public class Toppings extends JPanel {
 		panel_1.add(btnGreenPeppers, gbc_btnGreenPeppers);
 		
 		JButton btnNone = new JButton("None");
+		btnNone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(total);
+				model.clear();
+				orderList.add("(" + launch.getSize() + ")" + " Peperronni Pizza" );
+
+				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+				}
+				if(launch.getSize() == "S"){
+					total += prices.get(0);
+				}
+				if(launch.getSize() == "S"){
+					priceList.add((prices.get(0)+ prices.get(3)) + " ");
+				}
+				else if(launch.getSize() == "M"){
+					priceList.add((prices.get(1)+ prices.get(4)) + " ");
+				}
+				else if(launch.getSize() == "L"){
+					priceList.add( prices.get(5) + " ");
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
+			}
+		});
 		btnNone.setFont(btnNone.getFont().deriveFont(btnNone.getFont().getSize() + 1f));
 		GridBagConstraints gbc_btnNone = new GridBagConstraints();
 		gbc_btnNone.gridwidth = 2;
@@ -364,6 +577,13 @@ public class Toppings extends JPanel {
 		scrollPane.setColumnHeaderView(lblNewLabel);
 		lblNewLabel.setFont(lblNewLabel.getFont().deriveFont(lblNewLabel.getFont().getSize() + 15f));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		/*textField = new JTextField();
+		textField.setText("Total Price:" + total);
+		textField.setColumns(10);
+		scrollPane.setRowHeaderView(textField);
+	*/
+		
 		GridBagConstraints gbc_1 = new GridBagConstraints();
 		gbc_1.fill = GridBagConstraints.BOTH;
 		gbc_1.gridx = 1;
@@ -374,6 +594,7 @@ public class Toppings extends JPanel {
 		btnDeleteSelection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orderList.remove(list.getSelectedIndex());
+				priceList.remove(list.getSelectedIndex());
 				model.clear();
 				for(int i = 0; i < orderList.size(); i++){
 					model.addElement((i+1) + ". " + orderList.get(i));
@@ -402,6 +623,7 @@ public class Toppings extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				model.clear();
 				orderList.clear();
+				priceList.clear();
 			}
 		});
 		btnClearCart.setFont(btnClearCart.getFont().deriveFont(btnClearCart.getFont().getSize() + 10f));
