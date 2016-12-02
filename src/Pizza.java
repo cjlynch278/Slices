@@ -43,13 +43,15 @@ import java.awt.Font;
 
 public class Pizza extends JPanel {
 	public int count = 1;
+	private JTextField textField;
 	//public ArrayList<String> orderList;
 	/**
 	 * Create the panel.
+	 * @param priceList 
 	 * @param orderList2 
 	 */
 
-	public Pizza(Launch launch, DefaultListModel<String> model, ArrayList<String> orderList) {
+	public Pizza(Launch launch, DefaultListModel<String> model, ArrayList<String> orderList, ArrayList<String> priceList) {
 		setBackground(Color.LIGHT_GRAY);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -290,6 +292,12 @@ public class Pizza extends JPanel {
 		scrollPane.setColumnHeaderView(lblNewLabel);
 		lblNewLabel.setFont(lblNewLabel.getFont().deriveFont(lblNewLabel.getFont().getSize() + 15f));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		/*textField = new JTextField();
+		textField.setText("Total Price: 0.0");
+		textField.setColumns(10);
+		scrollPane.setRowHeaderView(textField);
+		*/
 		GridBagConstraints gbc_1 = new GridBagConstraints();
 		gbc_1.fill = GridBagConstraints.BOTH;
 		gbc_1.gridx = 1;
@@ -300,12 +308,15 @@ public class Pizza extends JPanel {
 		btnDeleteSelection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orderList.remove(list.getSelectedIndex());
+				priceList.remove(list.getSelectedIndex());
+				
 				
 				model.clear();
 				for(int i = 0; i < orderList.size(); i++){
 					model.addElement((i+1) + ". " + orderList.get(i));
 					
 				}
+				
 			}
 		});
 		
@@ -329,6 +340,7 @@ public class Pizza extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				model.clear();
 				orderList.clear();
+				priceList.clear();
 			}
 		});
 		btnClearCart.setFont(btnClearCart.getFont().deriveFont(btnClearCart.getFont().getSize() + 10f));
