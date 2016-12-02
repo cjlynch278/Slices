@@ -114,11 +114,7 @@ public class EditPrices extends JPanel {
 		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		listModel.addElement("hayyylo");
-		listModel.addElement("Yasss");
-		for (int i = 0; i < 103; i++) {
-			listModel.addElement("Yassssss");
-		}
+		
 
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 40, 91, 50, 70, 50, 40, 0 };
@@ -381,7 +377,7 @@ public class EditPrices extends JPanel {
 
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				JOptionPane.showMessageDialog(null, "Program restart required for price change");
 				FileWriter writer = null;
 
 				try {
