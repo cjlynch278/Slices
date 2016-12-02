@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -39,17 +40,41 @@ import java.awt.BorderLayout;
 import javax.swing.UIManager;
 
 import java.awt.Font;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 
 public class Order extends JPanel {
 	public int count = 1;
+	
 	//public ArrayList<String> orderList;
 	/**
 	 * Create the panel.
 	 * @param orderList 
+	 * @param total 
 	 */
-
-	public Order(Launch launch, DefaultListModel<String> model, ArrayList<String> orderList) {
+	
+	private JTextField textField;
+	public Order(Launch launch, DefaultListModel<String> model, ArrayList<String> orderList, double total,ArrayList<String> priceList, DefaultListModel<String> priceModel) {
+		
+		File file = new File("Prices");
+		ArrayList<Double> prices = new ArrayList<Double>();
+		
+		
+		try {
+			Scanner scan = new Scanner(file);
+			while(scan.hasNextLine()){
+				
+				prices.add(Double.parseDouble(scan.nextLine()));
+			}
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
 		setBackground(Color.LIGHT_GRAY);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -184,16 +209,23 @@ public class Order extends JPanel {
 		btnNewButton_1.setFont(btnNewButton_1.getFont().deriveFont(btnNewButton_1.getFont().getSize() + 25f));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.clear();
-				orderList.add("Beverage");
 				
+				model.clear();
+				priceModel.clear();
+				priceList.add(prices.get(6).toString());
+				for(int i = 0; i < priceList.size(); i++){
+					priceModel.addElement((i+1) + ". " + priceList.get(i));
+					
+				}
+				orderList.add("Beverage");
+				System.out.println(total);
 				
 				for(int i = 0; i < orderList.size(); i++){
 					model.addElement((i+1) + ". " + orderList.get(i));
 					
 				}
 				
-				
+				//txtTotalPrice.setText("Total Price: " + (total + (total*(prices.get(7)/100))));
 				
 			}
 		});
@@ -272,6 +304,12 @@ public class Order extends JPanel {
 		scrollPane.setColumnHeaderView(lblNewLabel);
 		lblNewLabel.setFont(lblNewLabel.getFont().deriveFont(lblNewLabel.getFont().getSize() + 15f));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		/*textField = new JTextField();
+		textField.setText("Total Price: ");
+		textField.setColumns(10);
+		scrollPane.setRowHeaderView(textField);
+		*/
 		GridBagConstraints gbc_1 = new GridBagConstraints();
 		gbc_1.fill = GridBagConstraints.BOTH;
 		gbc_1.gridx = 1;
@@ -282,9 +320,16 @@ public class Order extends JPanel {
 		btnDeleteSelection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orderList.remove(list.getSelectedIndex());
+				priceList.remove(list.getSelectedIndex());
+				
 				
 				model.clear();
 				for(int i = 0; i < orderList.size(); i++){
+					model.addElement((i+1) + ". " + orderList.get(i));
+					
+				}
+				priceModel.clear();
+				for(int i = 0; i < priceList.size(); i++){
 					model.addElement((i+1) + ". " + orderList.get(i));
 					
 				}
@@ -311,6 +356,9 @@ public class Order extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				model.clear();
 				orderList.clear();
+				priceModel.clear();
+				priceList.clear();
+				
 				
 			}
 		});
