@@ -44,7 +44,7 @@ public class Login extends JPanel{
 	JFrame frame;
 	private JTextField txtEnterPinHere;
 
-	public Login(JFrame f, Launch launch, ArrayList<String> orderList, DefaultListModel<String> model, AccountDB accounts, DefaultListModel<String> AccountsModel) {
+	public Login(JFrame f, Launch launch, ArrayList<String> orderList, DefaultListModel<String> model, AccountDB accounts, DefaultListModel<String> AccountsModel, double total, ArrayList<String> priceList, DefaultListModel<String> priceModel) {
 		setBackground(Color.LIGHT_GRAY);
 		setForeground(Color.LIGHT_GRAY);
 		frame = f;
@@ -117,7 +117,7 @@ public class Login extends JPanel{
 		LoginButton.setFont(LoginButton.getFont().deriveFont(LoginButton.getFont().getSize() + 9f));
 		LoginButton.setForeground(Color.BLACK);
 		LoginButton.addActionListener(new ActionListener() {
-			JPanel Main = new Main(frame, launch, orderList, model, accounts, AccountsModel);
+			JPanel Main = new Main(frame, launch, orderList, model, accounts, AccountsModel, total, priceList, priceModel);
 
 			public void actionPerformed(ActionEvent arg0) {
 				
