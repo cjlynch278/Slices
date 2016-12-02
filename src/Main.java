@@ -25,8 +25,10 @@ public class Main extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param priceList 
+	 * @param priceModel 
 	 */
-	public Main(JFrame frame, Launch launch, ArrayList<String> orderList, DefaultListModel<String> model, AccountDB accounts, DefaultListModel<String> AccountsModel) {
+	public Main(JFrame frame, Launch launch, ArrayList<String> orderList, DefaultListModel<String> model, AccountDB accounts, DefaultListModel<String> AccountsModel, double total, ArrayList<String> priceList, DefaultListModel<String> priceModel) {
 		setBackground(Color.LIGHT_GRAY);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 321, 20, 0};
@@ -124,10 +126,15 @@ public class Main extends JPanel {
 		//JPanel Login = new Login(frame);
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				orderList.clear();
+				model.clear();
+				priceModel.clear();
+				priceList.clear();
+				
 				//frame.getContentPane().add(Login);
 				setVisible(false);
 				//launch.getLogin().setVisible(true);
-				Login Login = new Login(frame, launch, orderList,model, accounts, AccountsModel);
+				Login Login = new Login(frame, launch, orderList,model, accounts, AccountsModel, total,priceList, priceModel);
 				//EditAccounts2 EditAccounts2 = new EditAccounts2(frame, launch, accounts, accounts.getEdit());
 				//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
 				//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
