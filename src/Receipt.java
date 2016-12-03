@@ -1,221 +1,182 @@
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JButton;
 
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.GridBagConstraints;
+import java.awt.Color;
+
+import javax.swing.JScrollPane;
+
 import java.awt.Insets;
 
-import javax.swing.JLabel;
+import javax.swing.JButton;
 
 import java.awt.Component;
 
 import javax.swing.Box;
 
 import java.awt.Dimension;
-import java.awt.Color;
 import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JList;
+import javax.swing.ListModel;
 import javax.swing.ImageIcon;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Settings extends JPanel {
+import javax.swing.JTextField;
 
 
-	public Settings(JFrame frame, Launch launch, AccountDB accounts, DefaultListModel<String> AccountsModel) {
-		setBackground(Color.LIGHT_GRAY);
+public class Receipt extends JPanel {
+	ArrayList<String> orderList = new ArrayList<String>();
+	private JTextField subTotal;
+	//private static JTextField priceText;
+	//private JTextField tax;
+	
+	/**
+	 * Create the panel.
+	 * @param launch 
+	 * @param total 
+	 * @param priceList 
+	 * @param priceModel 
+	 * @param priceText 
+	 */
+	public Receipt( ArrayList<String> o, DefaultListModel<String> model, Launch launch, double total, ArrayList<String> priceList, DefaultListModel<String> priceModel, JTextField priceText, JTextField tax, JTextField subTotal) {
+		orderList = o;
+		for(int i =0; i<orderList.size() ; i++){
+			model.addElement((i+1) + ". " +orderList.get(i));
+		}
+		JList<String> list = new JList<String>(model);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{20, 161, 160, 20, 0};
-		gridBagLayout.rowHeights = new int[]{0, 33, 0, 35, 35, 23, 20, 35, 17, 35, 35, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		Component rigidArea_4 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_4 = new GridBagConstraints();
-		gbc_rigidArea_4.fill = GridBagConstraints.BOTH;
-		gbc_rigidArea_4.gridheight = 13;
-		gbc_rigidArea_4.insets = new Insets(0, 0, 0, 5);
-		gbc_rigidArea_4.gridx = 0;
-		gbc_rigidArea_4.gridy = 0;
-		add(rigidArea_4, gbc_rigidArea_4);
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 2;
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 0;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 175, 0, 175, 0, 0};
+		gbl_panel.rowHeights = new int[]{50, 350, 50, 0, 30, 10, 0};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
-		Component rigidArea_5 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_5 = new GridBagConstraints();
-		gbc_rigidArea_5.fill = GridBagConstraints.BOTH;
-		gbc_rigidArea_5.gridheight = 13;
-		gbc_rigidArea_5.gridx = 3;
-		gbc_rigidArea_5.gridy = 0;
-		add(rigidArea_5, gbc_rigidArea_5);
-		
-		JLabel lblWelcome = new JLabel("Settings");
-		lblWelcome.setFont(lblWelcome.getFont().deriveFont(lblWelcome.getFont().getSize() + 60f));
-		GridBagConstraints gbc_lblWelcome = new GridBagConstraints();
-		gbc_lblWelcome.gridwidth = 2;
-		gbc_lblWelcome.insets = new Insets(0, 0, 5, 5);
-		gbc_lblWelcome.gridx = 1;
-		gbc_lblWelcome.gridy = 1;
-		add(lblWelcome, gbc_lblWelcome);
+		JLabel label = new JLabel("Final Order");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(label.getFont().deriveFont(label.getFont().getSize() + 13f));
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.gridwidth = 3;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 1;
+		gbc_label.gridy = 0;
+		panel.add(label, gbc_label);
 		
 		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
-		gbc_rigidArea.gridwidth = 2;
-		gbc_rigidArea.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea.gridheight = 2;
+		gbc_rigidArea.fill = GridBagConstraints.VERTICAL;
 		gbc_rigidArea.insets = new Insets(0, 0, 5, 5);
-		gbc_rigidArea.gridx = 1;
-		gbc_rigidArea.gridy = 2;
-		add(rigidArea, gbc_rigidArea);
-		JButton OrderButton = new JButton("Create User");
-		OrderButton.setFont(OrderButton.getFont().deriveFont(OrderButton.getFont().getSize() + 4f));
-		OrderButton.addActionListener(new ActionListener() {
+		gbc_rigidArea.gridx = 0;
+		gbc_rigidArea.gridy = 1;
+		panel.add(rigidArea, gbc_rigidArea);
 		
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				setVisible(false);			
-				
-				NewUser NewUser = new NewUser(frame, launch, accounts);
-				frame.getContentPane().add(NewUser, "NewUser");
-				NewUser.setVisible(true);
-			}
-		});
-		GridBagConstraints gbc_OrderButton = new GridBagConstraints();
-		gbc_OrderButton.gridwidth = 2;
-		gbc_OrderButton.fill = GridBagConstraints.BOTH;
-		gbc_OrderButton.insets = new Insets(0, 0, 5, 5);
-		gbc_OrderButton.gridx = 1;
-		gbc_OrderButton.gridy = 3;
-		add(OrderButton, gbc_OrderButton);
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridheight = 2;
+		gbc_scrollPane.gridwidth = 3;
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 1;
+		panel.add(scrollPane, gbc_scrollPane);
+		
+		list.setFont(list.getFont().deriveFont(list.getFont().getSize() + 8f));
+		scrollPane.setViewportView(list);
+		
+		JList<String> list_1 = new JList<String>(priceModel);
+		list_1.setFont(list_1.getFont().deriveFont(list_1.getFont().getSize() + 8f));
+		scrollPane.setRowHeaderView(list_1);
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
-		gbc_rigidArea_1.gridwidth = 2;
-		gbc_rigidArea_1.fill = GridBagConstraints.BOTH;
-		gbc_rigidArea_1.insets = new Insets(0, 0, 5, 5);
-		gbc_rigidArea_1.gridx = 1;
-		gbc_rigidArea_1.gridy = 4;
-		add(rigidArea_1, gbc_rigidArea_1);
+		gbc_rigidArea_1.gridheight = 2;
+		gbc_rigidArea_1.fill = GridBagConstraints.VERTICAL;
+		gbc_rigidArea_1.insets = new Insets(0, 0, 5, 0);
+		gbc_rigidArea_1.gridx = 4;
+		gbc_rigidArea_1.gridy = 1;
+		panel.add(rigidArea_1, gbc_rigidArea_1);
 		
-		//JPanel settings = new Settings(frame,launch, accounts, AccountsModel);
-		JButton btnNewButton_2 = new JButton("Edit User");
-		btnNewButton_2.setFont(btnNewButton_2.getFont().deriveFont(btnNewButton_2.getFont().getSize() + 4f));
-		btnNewButton_2.addActionListener(new ActionListener() {
+		
+		tax.setText("Tax");
+		GridBagConstraints gbc_tax = new GridBagConstraints();
+		gbc_tax.insets = new Insets(0, 0, 5, 5);
+		gbc_tax.fill = GridBagConstraints.BOTH;
+		gbc_tax.gridx = 1;
+		gbc_tax.gridy = 3;
+		panel.add(tax, gbc_tax);
+		tax.setColumns(10);
+		
+		
+		subTotal.setText("Subtotal");
+		GridBagConstraints gbc_subTotal = new GridBagConstraints();
+		gbc_subTotal.insets = new Insets(0, 0, 5, 5);
+		gbc_subTotal.fill = GridBagConstraints.BOTH;
+		gbc_subTotal.gridx = 2;
+		gbc_subTotal.gridy = 3;
+		panel.add(subTotal, gbc_subTotal);
+		subTotal.setColumns(10);
+		
+		
+		priceText.setText(orderList.size() + " ");
+		
+				
+		priceText.setFont(priceText.getFont().deriveFont(priceText.getFont().getSize() + 3f));
+		//priceText.setHorizontalAlignment(SwingConstants.RIGHT);
+		GridBagConstraints gbc_priceText = new GridBagConstraints();
+		gbc_priceText.insets = new Insets(0, 0, 5, 5);
+		gbc_priceText.fill = GridBagConstraints.BOTH;
+		gbc_priceText.gridx = 3;
+		gbc_priceText.gridy = 3;
+		panel.add(priceText, gbc_priceText);
+		priceText.setColumns(10);
+		
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				AccountsModel.clear();
-				
-				for (Account a : accounts.getAccts() ){
-						
-					String entry = a.getPIN() + "  " + a.getName();
-					AccountsModel.addElement(entry);
-					
-				}
-				
-				
-				setVisible(false);
-				launch.getEditAccounts().setVisible(true);
-				
-				
-			}
-		});
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.gridwidth = 2;
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_2.gridx = 1;
-		gbc_btnNewButton_2.gridy = 5;
-		add(btnNewButton_2, gbc_btnNewButton_2);
-		
-		JButton btnLogout = new JButton("Delete User");
-		
-		//JPanel Login = new Login(frame);
-		btnLogout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				AccountsModel.clear();
-				for (Account a : accounts.getAccts() ){
-					//if(!accounts.getCurrentUser().equals(a)){
-						
-						String entry = a.getPIN() + "  " + a.getName();
-						AccountsModel.addElement(entry);
-					//}
-				}setVisible(false);
-				launch.getDeleteUser().setVisible(true);
-			
-			}
-		});
-		btnLogout.setFont(btnLogout.getFont().deriveFont(btnLogout.getFont().getSize() + 4f));
-		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
-		gbc_btnLogout.gridwidth = 2;
-		gbc_btnLogout.fill = GridBagConstraints.BOTH;
-		gbc_btnLogout.insets = new Insets(0, 0, 5, 5);
-		gbc_btnLogout.gridx = 1;
-		gbc_btnLogout.gridy = 7;
-		add(btnLogout, gbc_btnLogout);
-		
-		Component rigidArea_3 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_3 = new GridBagConstraints();
-		gbc_rigidArea_3.gridwidth = 2;
-		gbc_rigidArea_3.fill = GridBagConstraints.BOTH;
-		gbc_rigidArea_3.insets = new Insets(0, 0, 5, 5);
-		gbc_rigidArea_3.gridx = 1;
-		gbc_rigidArea_3.gridy = 8;
-		add(rigidArea_3, gbc_rigidArea_3);
-		
-		JButton btnEditPrices = new JButton("Edit Prices");
-		btnEditPrices.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				launch.getEditPrices().setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnEditPrices.setFont(btnEditPrices.getFont().deriveFont(btnEditPrices.getFont().getSize() + 4f));
-		GridBagConstraints gbc_btnEditPrices = new GridBagConstraints();
-		gbc_btnEditPrices.gridwidth = 2;
-		gbc_btnEditPrices.fill = GridBagConstraints.BOTH;
-		gbc_btnEditPrices.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditPrices.gridx = 1;
-		gbc_btnEditPrices.gridy = 9;
-		add(btnEditPrices, gbc_btnEditPrices);
-		
-		Component rigidArea_6 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_6 = new GridBagConstraints();
-		gbc_rigidArea_6.gridwidth = 2;
-		gbc_rigidArea_6.fill = GridBagConstraints.BOTH;
-		gbc_rigidArea_6.insets = new Insets(0, 0, 5, 5);
-		gbc_rigidArea_6.gridx = 1;
-		gbc_rigidArea_6.gridy = 10;
-		add(rigidArea_6, gbc_rigidArea_6);
-		
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
 				launch.getMain().setVisible(true);
+				setVisible(false);
 			}
 		});
-		btnBack.setIcon(new ImageIcon(Settings.class.getResource("/Backicon/back (1).png")));
-		btnBack.setFont(btnBack.getFont().deriveFont(btnBack.getFont().getSize() + 4f));
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-		gbc_btnBack.fill = GridBagConstraints.BOTH;
-		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBack.gridx = 1;
-		gbc_btnBack.gridy = 11;
-		add(btnBack, gbc_btnBack);
+		btnMainMenu.setFont(btnMainMenu.getFont().deriveFont(btnMainMenu.getFont().getSize() + 5f));
+		GridBagConstraints gbc_btnMainMenu = new GridBagConstraints();
+		gbc_btnMainMenu.fill = GridBagConstraints.BOTH;
+		gbc_btnMainMenu.insets = new Insets(0, 0, 5, 5);
+		gbc_btnMainMenu.gridx = 2;
+		gbc_btnMainMenu.gridy = 4;
+		panel.add(btnMainMenu, gbc_btnMainMenu);
 		
-		Component rigidArea_7 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_7 = new GridBagConstraints();
-		gbc_rigidArea_7.fill = GridBagConstraints.BOTH;
-		gbc_rigidArea_7.insets = new Insets(0, 0, 0, 5);
-		gbc_rigidArea_7.gridx = 1;
-		gbc_rigidArea_7.gridy = 12;
-		add(rigidArea_7, gbc_rigidArea_7);
-	
-		
+		Component rigidArea_2 = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea_2 = new GridBagConstraints();
+		gbc_rigidArea_2.fill = GridBagConstraints.BOTH;
+		gbc_rigidArea_2.gridwidth = 3;
+		gbc_rigidArea_2.insets = new Insets(0, 0, 0, 5);
+		gbc_rigidArea_2.gridx = 1;
+		gbc_rigidArea_2.gridy = 5;
+		panel.add(rigidArea_2, gbc_rigidArea_2);
 
 	}
-
+	
 }
