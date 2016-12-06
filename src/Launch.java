@@ -121,6 +121,7 @@ public class Launch {
 			}
 			
 		} catch (FileNotFoundException e1) {
+			
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -132,6 +133,7 @@ public class Launch {
 		try {
 			input = new Scanner(new File("Accounts"));
 		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Accounts file not found.");
 			// e.printStackTrace();
 		}
 		while (input.hasNextLine() == true) {
