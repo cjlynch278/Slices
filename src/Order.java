@@ -136,7 +136,7 @@ public class Order extends JPanel {
 				
 			}
 		});
-		btnCheckou.setIcon(new ImageIcon(Order.class.getResource("/Backicon/rsz_checkout-light.png")));
+		btnCheckou.setIcon(new ImageIcon(Order.class.getResource("/Icons/rsz_checkout-light.png")));
 		btnCheckou.setFont(btnCheckou.getFont().deriveFont(btnCheckou.getFont().getSize() + 10f));
 		GridBagConstraints gbc_btnCheckou = new GridBagConstraints();
 		gbc_btnCheckou.fill = GridBagConstraints.BOTH;
@@ -254,7 +254,7 @@ public class Order extends JPanel {
 				setVisible(false);
 			}
 		});
-		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
+		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Icons/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;
 		gbc_btnBack.insets = new Insets(0, 0, 5, 5);

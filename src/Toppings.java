@@ -508,7 +508,7 @@ public class Toppings extends JPanel {
 				setVisible(false);
 			}
 		});
-		button.setIcon(new ImageIcon(Toppings.class.getResource("/Backicon/rsz_checkout-light.png")));
+		button.setIcon(new ImageIcon(Toppings.class.getResource("/Icons/rsz_checkout-light.png")));
 		button.setFont(button.getFont().deriveFont(button.getFont().getSize() + 10f));
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.fill = GridBagConstraints.BOTH;
@@ -516,7 +516,7 @@ public class Toppings extends JPanel {
 		gbc_button.gridx = 2;
 		gbc_button.gridy = 1;
 		panel.add(button, gbc_button);
-		btnBack.setIcon(new ImageIcon(Toppings.class.getResource("/Backicon/back (1).png")));
+		btnBack.setIcon(new ImageIcon(Toppings.class.getResource("/Icons/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.gridwidth = 2;
 		gbc_btnBack.fill = GridBagConstraints.BOTH;

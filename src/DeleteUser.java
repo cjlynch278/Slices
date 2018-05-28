@@ -185,7 +185,7 @@ public class DeleteUser extends JPanel {
 		gbc_rigidArea_2.gridx = 2;
 		gbc_rigidArea_2.gridy = 8;
 		panel_1.add(rigidArea_2, gbc_rigidArea_2);
-		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
+		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Icons/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;
 		gbc_btnBack.insets = new Insets(0, 0, 5, 5);

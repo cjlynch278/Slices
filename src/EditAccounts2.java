@@ -249,7 +249,7 @@ public class EditAccounts2 extends JPanel {
 		gbc_rigidArea_7.gridx = 1;
 		gbc_rigidArea_7.gridy = 8;
 		panel_1.add(rigidArea_7, gbc_rigidArea_7);
-		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
+		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Icons/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;
 		gbc_btnBack.insets = new Insets(0, 0, 5, 5);

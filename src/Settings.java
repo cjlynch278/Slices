@@ -197,7 +197,7 @@ public class Settings extends JPanel {
 				launch.getMain().setVisible(true);
 			}
 		});
-		btnBack.setIcon(new ImageIcon(Settings.class.getResource("/Backicon/back (1).png")));
+		btnBack.setIcon(new ImageIcon(Settings.class.getResource("/Icons/back (1).png")));
 		btnBack.setFont(btnBack.getFont().deriveFont(btnBack.getFont().getSize() + 4f));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;

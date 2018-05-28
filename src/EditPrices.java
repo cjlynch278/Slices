@@ -357,7 +357,7 @@ public class EditPrices extends JPanel {
 		gbc_rigidArea_1.gridx = 1;
 		gbc_rigidArea_1.gridy = 9;
 		panel_1.add(rigidArea_1, gbc_rigidArea_1);
-		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Backicon/back (1).png")));
+		btnBack.setIcon(new ImageIcon(Order.class.getResource("/Icons/back (1).png")));
 		GridBagConstraints gbc_btnBack = new GridBagConstraints();
 		gbc_btnBack.fill = GridBagConstraints.BOTH;
 		gbc_btnBack.insets = new Insets(0, 0, 5, 5);
