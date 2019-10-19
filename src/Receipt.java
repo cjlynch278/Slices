@@ -1,182 +1,279 @@
-import javax.swing.JPanel;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Color;
-
-import javax.swing.JScrollPane;
-
-import java.awt.Insets;
-
-import javax.swing.JButton;
-
-import java.awt.Component;
-
-import javax.swing.Box;
-
 import java.awt.Dimension;
-import java.util.ArrayList;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import java.awt.CardLayout;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.ListModel;
-import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-import javax.swing.JTextField;
+//500 width 450 length
+//400 top width
+public class Launch {
 
+	private JFrame frame;
+	private JTextField textField;
+	private JButton btnNewButton;
+	private JPanel panel;
+	
+	public JPanel Main;
+	public  JPanel Login;
+	public JPanel Pizza;
+	public  JPanel Settings;
+	public JPanel NewUser ;
+	public JPanel Order;
+	public JPanel DeleteUser;
+	public JPanel Toppings;
+	public JPanel EditAccounts;
+	public JPanel EditAccounts2;
+	public JPanel Receipt;
+	public JPanel EditPrices;
+	
+	public static DefaultListModel<String> model;
+	public static DefaultListModel<String> priceModel;
+	AccountDB accounts = new AccountDB();
+	ArrayList<Double> prices;
 
-public class Receipt extends JPanel {
-	ArrayList<String> orderList = new ArrayList<String>();
-	private JTextField subTotal;
-	//private static JTextField priceText;
-	//private JTextField tax;
+	public static DefaultListModel<String> AccountModel;
+	public static ArrayList<String> orderList;
+	public static ArrayList<String> priceList;
+	public String Size;
+	public static double total;
+	public static JTextField priceText;
+	public static JTextField tax;
+	public static JTextField subTotal;
+    public static DecimalFormat df2 = new DecimalFormat("#.##");
+
+	
 	
 	/**
-	 * Create the panel.
-	 * @param launch 
-	 * @param total 
-	 * @param priceList 
-	 * @param priceModel 
-	 * @param priceText 
+	 * Launch the application.
 	 */
-	public Receipt( ArrayList<String> o, DefaultListModel<String> model, Launch launch, double total, ArrayList<String> priceList, DefaultListModel<String> priceModel, JTextField priceText, JTextField tax, JTextField subTotal) {
-		orderList = o;
-		for(int i =0; i<orderList.size() ; i++){
-			model.addElement((i+1) + ". " +orderList.get(i));
-		}
-		JList<String> list = new JList<String>(model);
-		
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.LIGHT_GRAY);
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridwidth = 2;
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
-		add(panel, gbc_panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 175, 0, 175, 0, 0};
-		gbl_panel.rowHeights = new int[]{50, 350, 50, 0, 30, 10, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
-		
-		JLabel label = new JLabel("Final Order");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(label.getFont().deriveFont(label.getFont().getSize() + 13f));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.gridwidth = 3;
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 1;
-		gbc_label.gridy = 0;
-		panel.add(label, gbc_label);
-		
-		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
-		gbc_rigidArea.gridheight = 2;
-		gbc_rigidArea.fill = GridBagConstraints.VERTICAL;
-		gbc_rigidArea.insets = new Insets(0, 0, 5, 5);
-		gbc_rigidArea.gridx = 0;
-		gbc_rigidArea.gridy = 1;
-		panel.add(rigidArea, gbc_rigidArea);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 2;
-		gbc_scrollPane.gridwidth = 3;
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 1;
-		panel.add(scrollPane, gbc_scrollPane);
-		
-		list.setFont(list.getFont().deriveFont(list.getFont().getSize() + 8f));
-		scrollPane.setViewportView(list);
-		
-		JList<String> list_1 = new JList<String>(priceModel);
-		list_1.setFont(list_1.getFont().deriveFont(list_1.getFont().getSize() + 8f));
-		scrollPane.setRowHeaderView(list_1);
-		
-		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
-		gbc_rigidArea_1.gridheight = 2;
-		gbc_rigidArea_1.fill = GridBagConstraints.VERTICAL;
-		gbc_rigidArea_1.insets = new Insets(0, 0, 5, 0);
-		gbc_rigidArea_1.gridx = 4;
-		gbc_rigidArea_1.gridy = 1;
-		panel.add(rigidArea_1, gbc_rigidArea_1);
-		
-		
-		tax.setText("Tax");
-		GridBagConstraints gbc_tax = new GridBagConstraints();
-		gbc_tax.insets = new Insets(0, 0, 5, 5);
-		gbc_tax.fill = GridBagConstraints.BOTH;
-		gbc_tax.gridx = 1;
-		gbc_tax.gridy = 3;
-		panel.add(tax, gbc_tax);
-		tax.setColumns(10);
-		
-		
-		subTotal.setText("Subtotal");
-		GridBagConstraints gbc_subTotal = new GridBagConstraints();
-		gbc_subTotal.insets = new Insets(0, 0, 5, 5);
-		gbc_subTotal.fill = GridBagConstraints.BOTH;
-		gbc_subTotal.gridx = 2;
-		gbc_subTotal.gridy = 3;
-		panel.add(subTotal, gbc_subTotal);
-		subTotal.setColumns(10);
-		
-		
-		priceText.setText(orderList.size() + " ");
-		
-				
-		priceText.setFont(priceText.getFont().deriveFont(priceText.getFont().getSize() + 3f));
-		//priceText.setHorizontalAlignment(SwingConstants.RIGHT);
-		GridBagConstraints gbc_priceText = new GridBagConstraints();
-		gbc_priceText.insets = new Insets(0, 0, 5, 5);
-		gbc_priceText.fill = GridBagConstraints.BOTH;
-		gbc_priceText.gridx = 3;
-		gbc_priceText.gridy = 3;
-		panel.add(priceText, gbc_priceText);
-		priceText.setColumns(10);
-		
-		JButton btnMainMenu = new JButton("Main Menu");
-		btnMainMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				launch.getMain().setVisible(true);
-				setVisible(false);
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Launch window = new Launch();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
-		btnMainMenu.setFont(btnMainMenu.getFont().deriveFont(btnMainMenu.getFont().getSize() + 5f));
-		GridBagConstraints gbc_btnMainMenu = new GridBagConstraints();
-		gbc_btnMainMenu.fill = GridBagConstraints.BOTH;
-		gbc_btnMainMenu.insets = new Insets(0, 0, 5, 5);
-		gbc_btnMainMenu.gridx = 2;
-		gbc_btnMainMenu.gridy = 4;
-		panel.add(btnMainMenu, gbc_btnMainMenu);
-		
-		Component rigidArea_2 = Box.createRigidArea(new Dimension(20, 20));
-		GridBagConstraints gbc_rigidArea_2 = new GridBagConstraints();
-		gbc_rigidArea_2.fill = GridBagConstraints.BOTH;
-		gbc_rigidArea_2.gridwidth = 3;
-		gbc_rigidArea_2.insets = new Insets(0, 0, 0, 5);
-		gbc_rigidArea_2.gridx = 1;
-		gbc_rigidArea_2.gridy = 5;
-		panel.add(rigidArea_2, gbc_rigidArea_2);
-
 	}
+
+	/**
+	 * Create the application.
+	 */
+	public Launch() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		  //frame.setSize(screenSize.width, screenSize.height);
+		
+		 
+		 
+		 
+		 frame = new JFrame();
+		frame.setBounds(0,0,600,800);
+		frame.setMinimumSize(new Dimension(700, 600));
 	
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		
+		
+		
+		model = new DefaultListModel<String>();
+		priceModel = new DefaultListModel<String>();
+		AccountModel = new DefaultListModel<String>();
+		orderList = new ArrayList<String>();
+		priceList = new ArrayList<String>();
+		priceText = new JTextField("default");
+		tax = new JTextField("default");
+		subTotal = new JTextField("default");
+		
+		total = 0;
+		
+		Scanner input = null;
+		
+		File file = new File("Prices");
+		 prices = new ArrayList<Double>();
+		Scanner scan;
+		try {
+			scan = new Scanner(file);
+			while(scan.hasNextLine()){
+				prices.add(Double.parseDouble(scan.nextLine()));
+			}
+			
+		} catch (FileNotFoundException e1) {
+			
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String acctPIN;
+		String line;
+		String words[] = new String[2];
+		String acctName = "";
+		try {
+			input = new Scanner(new File("Accounts"));
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Accounts file not found.");
+			// e.printStackTrace();
+		}
+		while (input.hasNextLine() == true) {
+
+			line = input.nextLine();
+			if (!line.equals("")) {
+				words = line.split(" ");
+				acctPIN = words[0];
+				for(int i = 1; i <words.length; i++){
+					acctName += words[i] + " ";
+				}
+				Account acct = new Account(acctPIN, acctName);
+
+				accounts.addAccount(acct);
+				accounts.setCurrentUser(acctPIN);
+				acctName = "";
+			}
+		}
+
+		input.close();
+
+	
+		Receipt = new Receipt(orderList,model,this, total,priceList,priceModel, priceText, tax, subTotal);
+		//EditAccounts2 = new EditAccounts2(frame,this, accounts);
+		Toppings = new Toppings(this,model, orderList, total,priceList,priceModel);
+		Pizza = new Pizza(this, model, orderList,priceList);
+		Main = new Main(frame,this,orderList,model, accounts, AccountModel, total,priceList,priceModel);
+		Login = new Login(frame, this, orderList,model, accounts, AccountModel, total,priceList,priceModel);
+		//Pizza = new Pizza(frmae, this);
+		Settings = new Settings(frame, this, accounts, AccountModel);
+		NewUser = new NewUser(frame,this, accounts);
+		DeleteUser = new DeleteUser(frame,this, accounts, AccountModel);
+		Order = new Order(this,model,orderList, total,priceList, priceModel);
+		EditAccounts = new EditAccounts(frame,this, accounts, AccountModel);
+		EditPrices = new EditPrices(frame, this);
+		//final JPanel Toppings = new Toppings();
+		
+		frame.getContentPane().add(Receipt, "Receipt");
+		Receipt.setVisible(false);
+		//frame.getContentPane().add(EditAccounts2, "EditAccounts2");
+		//EditAccounts2.setVisible(false);
+		frame.getContentPane().add(EditAccounts,"EditAccounts");
+		EditAccounts.setVisible(false);
+		frame.getContentPane().add(Toppings, "Toppings");
+		Toppings.setVisible(false);
+		//frame.getContentPane().add(Toppings, "Toppings");
+		frame.getContentPane().add(Settings, "Settings");
+		Settings.setVisible(false);
+		frame.getContentPane().add(Order, "Order");
+		Order.setVisible(false);
+		//frame.getContentPane().add(Pizza,"pizza");
+		//Pizza.setVisible(false);
+		frame.getContentPane().add(DeleteUser, "Delete User");
+		frame.getContentPane().add(Login, "name_23596145660473");
+		Login.setVisible(true);
+		frame.getContentPane().add(NewUser, "NewUser");
+		NewUser.setVisible(false);
+		frame.getContentPane().add(Pizza, "Pizza");
+		frame.setVisible(false);
+		frame.getContentPane().add(EditPrices, "EditPrices");
+		EditPrices.setVisible(false);
+		
+		frame.getContentPane().add(Main, "main");
+		
+		Main.setVisible(false);
+		
+	}
+	public JPanel getSettings(){
+		return Settings;
+	}
+	public JPanel getMain(){
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
+		return Main;
+	}
+	public JPanel getOrder(){
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
+		return Order;
+	}
+	public JPanel getNewUser(){
+		return NewUser;
+	}
+	public JPanel getDeleteUser(){
+		return DeleteUser;
+	}
+	public JPanel getPizza(){	
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
+		return Pizza;
+	}
+	public JPanel getToppings(){
+		double total = 0;
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			System.out.println(total);
+		}
+		priceText.setText(total + " ");
+		return Toppings;
+	}
+	public void setSize(String size){
+		Size = size;
+	}
+	public String getSize(){
+		return Size;
+	}
+	public JPanel getEditAccounts(){
+		return EditAccounts;
+	}
+	public JPanel getReceipt(){
+		double total = 0;
+		priceModel.clear();
+		
+		for( int i = 0; i < priceList.size(); i ++){
+			total += Double.parseDouble(priceList.get(i));
+			priceModel.addElement(priceList.get(i));
+		}
+		priceText.setText("Total: $" + df2.format((total +(total * (prices.get(7)/100)))) + " ");
+		tax.setText("Tax $" + df2.format((total * (prices.get(7)/100))) +" ");
+		subTotal.setText("SubTotal: $"+df2.format(total) + " ");
+		return Receipt;
+	}
+	public JPanel getEditPrices(){
+		return EditPrices;
+	}
+
+
 }
