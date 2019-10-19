@@ -221,7 +221,7 @@ public class Order extends JPanel {
 				System.out.println(total);
 				
 				for(int i = 0; i < orderList.size(); i++){
-					model.addElement((i+1) + ". " + orderList.get(i));
+					model.addElement((i+1) + ". " + orderList.get(i) );
 					
 				}
 				
@@ -328,11 +328,7 @@ public class Order extends JPanel {
 					model.addElement((i+1) + ". " + orderList.get(i));
 					
 				}
-				priceModel.clear();
-				for(int i = 0; i < priceList.size(); i++){
-					model.addElement((i+1) + ". " + orderList.get(i));
-					
-				}
+
 			}
 		});
 		
