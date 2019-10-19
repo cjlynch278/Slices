@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -54,7 +55,8 @@ public class Launch {
 	public static JTextField priceText;
 	public static JTextField tax;
 	public static JTextField subTotal;
-	
+    public static DecimalFormat df2 = new DecimalFormat("#.##");
+
 	
 	
 	/**
@@ -264,9 +266,9 @@ public class Launch {
 			total += Double.parseDouble(priceList.get(i));
 			priceModel.addElement(priceList.get(i));
 		}
-		priceText.setText("Total: " + (double)(total + (total/prices.get(7))) + " ");
-		tax.setText("Tax " + total/prices.get(7) +" ");
-		subTotal.setText("SubTotal: "+total + " ");
+		priceText.setText("Total: $" + df2.format((total +(total * (prices.get(7)/100)))) + " ");
+		tax.setText("Tax $" + df2.format((total * (prices.get(7)/100))) +" ");
+		subTotal.setText("SubTotal: $"+df2.format(total) + " ");
 		return Receipt;
 	}
 	public JPanel getEditPrices(){
